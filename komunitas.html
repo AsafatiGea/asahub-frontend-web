@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Komunitas - AsaHub</title>
+    <link rel="icon" type="image/png" href="img/logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CSS Modular -->
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/komunitas.css">
+    <link rel="stylesheet" href="css/responsive-mobile.css">
+    <link rel="stylesheet" href="css/responsive-desktop.css">
+    <link rel="stylesheet" href="css/mobile-navigation.css">
+    <link rel="stylesheet" href="css/enhanced-buttons.css">
+    
+    
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar">
+    <div class="nav-container">
+        <a href="index.html" class="nav-logo">Asa<span>Hub</span></a>
+        
+        <div class="nav-links">
+            <a href="index.html">Marketplace</a>
+            <a href="jasa.html">Jasa</a>
+            <a href="edukasi.html">Edukasi</a>
+            <a href="komunitas.html" class="active">Komunitas</a>
+            <a href="tentang.html">Tentang</a>
+        </div>
+        
+        <!-- Desktop Auth Buttons -->
+        <div class="nav-auth desktop-only" id="navAuth">
+            <a href="login.html" class="btn btn-outline">Masuk</a>
+            <a href="daftar.html" class="btn btn-primary">Daftar</a>
+            
+            <!-- User Settings Icon (shown when logged in) -->
+            <a href="profil-user.html" class="user-settings-icon" id="userSettingsIcon" style="display: none;">
+                <i class="fas fa-cog"></i>
+            </a>
+            
+            <!-- Desktop Dropdown Menu -->
+            <div class="desktop-dropdown">
+                <button class="desktop-dropdown-toggle" id="desktopDropdownToggle">
+                    <i class="fas fa-th"></i>
+                    <span>Menu</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="desktop-dropdown-menu" id="desktopDropdownMenu">
+                    <a href="login.html?role=user" class="desktop-dropdown-item">
+                    <a href="buyer-dashboard.html" class="desktop-dropdown-item">
+                        <i class="fas fa-user"></i>
+                        <span>Dashboard User</span>
+                    </a>
+                    <a href="seller-dashboard.html" class="desktop-dropdown-item">
+                        <i class="fas fa-store"></i>
+                        <span>Dashboard Seller</span>
+                    </a>
+                    <div class="desktop-dropdown-divider"></div>
+                    <button class="desktop-dropdown-item" id="desktopDropdownExit">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Keluar</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-menu-toggle" id="mobileMenuToggle">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+</nav>
+
+<!-- Mobile Navigation Menu -->
+<div class="mobile-nav-menu" id="mobileNavMenu">
+    <div class="mobile-nav-header">
+        <div class="mobile-nav-logo">Asa<span>Hub</span></div>
+        <div class="mobile-nav-header-buttons">
+            <button class="mobile-nav-exit" id="mobileNavExit" title="Keluar dari Situs">
+                <i class="fas fa-sign-out-alt"></i>
+            </button>
+            <button class="mobile-nav-close" id="mobileNavClose">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
+    
+    <!-- Menu Content - Will be dynamically updated -->
+    <div class="mobile-nav-content" id="mobileNavContent">
+        <!-- Default menu for non-logged users -->
+        <div class="mobile-nav-section" id="guestMenu">
+            <h4 class="mobile-nav-title">Selamat Datang!</h4>
+            <a href="login.html?role=seller" class="mobile-nav-item">
+                <i class="fas fa-store"></i>
+                <span>Masuk sebagai Seller</span>
+            </a>
+            <a href="login.html?role=buyer" class="mobile-nav-item">
+                <i class="fas fa-user"></i>
+                <span>Masuk sebagai User/Pembeli</span>
+            </a>
+        </div>
+        
+        <!-- Menu for logged in users - hidden by default -->
+        <div class="mobile-nav-section" id="userMenu" style="display: none;">
+            <div class="mobile-user-info">
+                <div class="mobile-user-avatar">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+                <div class="mobile-user-details">
+                    <div class="mobile-user-name" id="mobileUserName">User Name</div>
+                    <div class="mobile-user-role" id="mobileUserRole">Role</div>
+                </div>
+            </div>
+            
+            <!-- Buyer Menu -->
+            <div class="mobile-nav-subsection" id="buyerMenuItems" style="display: none;">
+                <a href="buyer-dashboard.html" class="mobile-nav-item">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Dashboard User</span>
+                </a>
+                <a href="buyer-dashboard.html#section-profile" class="mobile-nav-item">
+                    <i class="fas fa-user"></i>
+                    <span>Profil</span>
+                </a>
+            </div>
+            
+            <!-- Seller Menu -->
+            <div class="mobile-nav-subsection" id="sellerMenuItems" style="display: none;">
+                <a href="seller-dashboard.html" class="mobile-nav-item">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Dashboard Seller</span>
+                </a>
+                <a href="seller-dashboard.html#section-profile" class="mobile-nav-item">
+                    <i class="fas fa-store"></i>
+                    <span>Profil Toko</span>
+                </a>
+            </div>
+            
+            <!-- Common Menu Items -->
+            <div class="mobile-nav-subsection">
+                <a href="index.html" class="mobile-nav-item">
+                    <i class="fas fa-home"></i>
+                    <span>Marketplace</span>
+                </a>
+                <a href="#" class="mobile-nav-item" onclick="authService.logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Mobile Navigation Overlay -->
+<div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+
+<!-- Hero Section -->
+<section class="komunitas-hero">
+    <div class="komunitas-hero-content">
+        <h1 class="komunitas-hero-title">Bergabung dengan Komunitas Kami</h1>
+        <p class="komunitas-hero-subtitle">Terhubung dengan sesama pengguna, bagikan pengalaman, dan berkembang bersama</p>
+    </div>
+</section>
+
+<!-- Community Stats -->
+<section class="community-stats">
+    <div class="community-stats-content">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number" id="totalMembers">0</div>
+                <div class="stat-label">Anggota Aktif</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="totalGroups">0</div>
+                <div class="stat-label">Grup Komunitas</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="totalDiscussions">0</div>
+                <div class="stat-label">Diskusi Aktif</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="totalEvents">0</div>
+                <div class="stat-label">Event Bulanan</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Section Divider -->
+<div class="content-separator"></div>
+
+<!-- Community Categories -->
+<section class="community-categories">
+    <div class="community-categories-content">
+        <h2 class="section-title">Kategori Komunitas</h2>
+        <div class="categories-grid" id="categoriesGrid">
+            <!-- Categories will be loaded dynamically -->
+        </div>
+    </div>
+</section>
+
+<!-- Section Divider -->
+<div class="section-divider"></div>
+
+<!-- Featured Groups -->
+<section class="featured-groups">
+    <div class="featured-groups-content">
+        <div class="section-header">
+            <h2 class="section-title">Grup Unggulan</h2>
+            <p class="section-subtitle">Komunitas terpopuler dengan diskusi aktif</p>
+        </div>
+        <div class="groups-grid" id="featuredGroupsGrid">
+            <!-- Featured groups will be loaded dynamically -->
+        </div>
+    </div>
+</section>
+
+<!-- Recent Discussions -->
+<section class="recent-discussions">
+    <div class="recent-discussions-content">
+        <div class="section-header">
+            <h2 class="section-title">Diskusi Terbaru</h2>
+            <p class="section-subtitle">Topik yang sedang hangat dibicarakan</p>
+        </div>
+        <div class="discussions-list" id="discussionsList">
+            <!-- Discussions will be loaded dynamically -->
+        </div>
+    </div>
+</section>
+
+<!-- Upcoming Events -->
+<section class="upcoming-events">
+    <div class="upcoming-events-content">
+        <div class="section-header">
+            <h2 class="section-title">Event Mendatang</h2>
+            <p class="section-subtitle">Workshop, webinar, dan meetup komunitas</p>
+        </div>
+        <div class="events-grid" id="eventsGrid">
+            <!-- Events will be loaded dynamically -->
+        </div>
+    </div>
+</section>
+
+<!-- Join Community CTA -->
+<section class="join-cta">
+    <div class="join-cta-content">
+        <h2 class="join-cta-title">Siap Bergabung?</h2>
+        <p class="join-cta-subtitle">Mulai perjalanan komunitasmu bersama AsaHub</p>
+        <div class="join-cta-actions">
+            <a href="daftar.html" class="btn btn-primary btn-large">Daftar Sekarang</a>
+            <a href="#" class="btn btn-outline btn-large" onclick="showCommunityGuide()">Panduan Komunitas</a>
+        </div>
+    </div>
+</section>
+
+<!-- Mobile Bottom Navigation -->
+<nav class="mobile-bottom-nav mobile-only">
+    <a href="index.html" class="mobile-nav-item">
+        <i class="fas fa-home"></i>
+    </a>
+    <a href="jasa.html" class="mobile-nav-item">
+        <i class="fas fa-briefcase"></i>
+    </a>
+    <a href="edukasi.html" class="mobile-nav-item">
+        <i class="fas fa-graduation-cap"></i>
+    </a>
+    <a href="komunitas.html" class="mobile-nav-item active">
+        <i class="fas fa-users"></i>
+    </a>
+    <a href="tentang.html" class="mobile-nav-item">
+        <i class="fas fa-info-circle"></i>
+    </a>
+    <a href="login.html" class="mobile-nav-item">
+        <i class="fas fa-user"></i>
+    </a>
+</nav>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-top">
+        <div class="footer-brand">
+            <div class="nav-logo" style="font-size:24px;">Asa<span>Hub</span></div>
+            <p>Pusat Harapan — Menyatukan individu dan brand dalam ekosistem bisnis yang stabil dan berkembang.</p>
+        </div>
+        <div class="footer-links">
+            <div class="footer-col">
+                <h4>Platform</h4>
+                <a href="index.html">Marketplace</a>
+                <a href="jasa.html">Jasa & Kerja</a>
+                <a href="edukasi.html">Edukasi</a>
+                <a href="komunitas.html">Komunitas</a>
+            </div>
+            <div class="footer-col">
+                <h4>Akun</h4>
+                <a href="daftar.html">Daftar Penjual</a>
+                <a href="login.html">Masuk</a>
+                <a href="dasboard.html">Dashboard</a>
+            </div>
+            <div class="footer-col">
+                <h4>AsaHub</h4>
+                <a href="tentang.html">Tentang Kami</a>
+                <a href="#" title="Segera hadir">Kontak</a>
+                <a href="#" title="Segera hadir">Kebijakan Privasi</a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2026 AsaHub · asahub.site · Dibuat dengan ❤️ oleh Asafati Gea</p>
+    </div>
+</footer>
+
+<!-- Community Guide Modal -->
+<div class="modal" id="communityGuideModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 class="modal-title">Panduan Komunitas</h3>
+            <button class="modal-close" onclick="closeCommunityGuide()">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="guide-content">
+                <h4>🎯 Tujuan Komunitas</h4>
+                <p>AsaHub Komunitas adalah wadah untuk berbagi pengalaman, belajar bersama, dan membangun jaringan bisnis yang kuat.</p>
+                
+                <h4>📋 Aturan Utama</h4>
+                <ul>
+                    <li>Saling menghormati dan mendukung sesama anggota</li>
+                    <li>Berbagi konten yang bermanfaat dan relevan</li>
+                    <li>Tidak melakukan spam atau promosi berlebihan</li>
+                    <li>Mengikuti etika bisnis yang baik</li>
+                </ul>
+                
+                <h4>🎉 Cara Bergabung</h4>
+                <ol>
+                    <li>Daftar akun AsaHub</li>
+                    <li>Verifikasi email dan profil</li>
+                    <li>Pilih grup komunitas yang sesuai</li>
+                    <li>Mulai berinteraksi dan berkontribusi</li>
+                </ol>
+                
+                <h4>💡 Tips Aktif</h4>
+                <ul>
+                    <li>Perkenalkan diri di grup baru</li>
+                    <li>Bagikan pengalaman dan tips bisnis</li>
+                    <li>Bantu anggota lain yang membutuhkan bantuan</li>
+                    <li>Ikuti event dan workshop komunitas</li>
+                </ul>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" onclick="closeCommunityGuide()">Mengerti</button>
+        </div>
+    </div>
+</div>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.7"></script>
+<script src="js/supabase-config.js"></script>
+<script src="js/auth-service.js"></script>
+<script src="js/komunitas-manager.js"></script>
+
+<script>
+// Initialize when DOM is ready
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('Komunitas page loaded...');
+    
+    // Initialize auth
+    if (window.authService) {
+        window.authService.init();
+        // Update navigation based on auth status
+        setTimeout(updateNavigationUI, 500);
+    }
+    
+    // Setup mobile navigation
+    setupMobileNavigation();
+    
+    // Initialize komunitas manager
+    if (window.komunitasManager) {
+        window.komunitasManager.init();
+    }
+});
+
+// Check login state and update UI
+function checkLoginState() {
+    const isLoggedIn = localStorage.getItem('userLoggedIn') === 'true';
+    const userType = localStorage.getItem('userType');
+    
+    if (isLoggedIn && userType === 'user') {
+        // Show user settings icon
+        const userSettingsIcon = document.getElementById('userSettingsIcon');
+        if (userSettingsIcon) {
+            userSettingsIcon.style.display = 'inline-flex';
+        }
+        
+        // Hide login/daftar buttons
+        const navAuth = document.getElementById('navAuth');
+        if (navAuth) {
+            const loginBtn = navAuth.querySelector('.btn-outline');
+            const daftarBtn = navAuth.querySelector('.btn-primary');
+            if (loginBtn) loginBtn.style.display = 'none';
+            if (daftarBtn) daftarBtn.style.display = 'none';
+        }
+    }
+}
+
+// Initialize login state check
+document.addEventListener('DOMContentLoaded', checkLoginState);
+
+// Mobile Navigation Setup
+function setupMobileNavigation() {
+    const menuToggle = document.getElementById('mobileMenuToggle');
+    const menuClose = document.getElementById('mobileNavClose');
+    const menuExit = document.getElementById('mobileNavExit');
+    const mobileMenu = document.getElementById('mobileNavMenu');
+    const overlay = document.getElementById('mobileNavOverlay');
+    
+    // Open menu
+    if (menuToggle) {
+        menuToggle.addEventListener('click', function() {
+            mobileMenu.classList.add('active');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            // Only animate menu items on desktop, disable on mobile
+            if (window.innerWidth > 768) {
+                const menuItems = mobileMenu.querySelectorAll('.mobile-nav-item');
+                menuItems.forEach((item, index) => {
+                    item.style.setProperty('--item-delay', `${index * 0.05}s`);
+                });
+            }
+        });
+    }
+    
+    // Close menu
+    function closeMobileMenu() {
+        mobileMenu.classList.remove('active');
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+    
+    if (menuClose) {
+        menuClose.addEventListener('click', closeMobileMenu);
+    }
+    
+    // Exit from site
+    if (menuExit) {
+        menuExit.addEventListener('click', function() {
+            if (confirm('Apakah Anda yakin ingin keluar dari situs AsaHub?')) {
+                // Close the mobile menu first
+                closeMobileMenu();
+                
+                // Try to close window directly first
+                if (window.history.length > 1) {
+                    // If there's history, go back to previous page
+                    window.history.back();
+                } else {
+                    // If no history, try to close the window
+                    window.close();
+                    
+                    // Only redirect to about:blank if window.close() fails and no history
+                    setTimeout(() => {
+                        if (!window.closed) {
+                            window.location.href = 'about:blank';
+                        }
+                    }, 100);
+                }
+            }
+        });
+    }
+    
+    if (overlay) {
+        overlay.addEventListener('click', closeMobileMenu);
+    }
+    
+    // Close menu when clicking on menu items (except logout)
+    const menuItems = mobileMenu.querySelectorAll('.mobile-nav-item:not([onclick*="logout"])');
+    menuItems.forEach(item => {
+        item.addEventListener('click', function() {
+            setTimeout(closeMobileMenu, 300);
+        });
+    });
+}
+
+// Update Navigation UI based on auth status
+function updateNavigationUI() {
+    const isAuth = window.authService && window.authService.isAuthenticated();
+    const user = window.authService ? window.authService.getCurrentUser() : null;
+    const userProfile = user ? user.profile : null;
+    
+    // Update desktop navigation
+    const navAuth = document.getElementById('navAuth');
+    if (navAuth) {
+        if (isAuth && userProfile) {
+            navAuth.innerHTML = `
+                <a href="${userProfile.role === 'seller' ? 'seller-dashboard.html' : 'buyer-dashboard.html'}" class="btn btn-outline">
+                    <i class="fas fa-user"></i> ${userProfile.full_name || 'Dashboard'}
+                </a>
+                <button class="btn btn-primary" onclick="authService.logout()">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            `;
+        } else {
+            navAuth.innerHTML = `
+                <a href="login.html" class="btn btn-outline">Masuk</a>
+                <a href="daftar.html" class="btn btn-primary">Daftar</a>
+            `;
+        }
+    }
+    
+    // Update mobile navigation
+    const guestMenu = document.getElementById('guestMenu');
+    const userMenu = document.getElementById('userMenu');
+    const buyerMenuItems = document.getElementById('buyerMenuItems');
+    const sellerMenuItems = document.getElementById('sellerMenuItems');
+    const mobileUserName = document.getElementById('mobileUserName');
+    const mobileUserRole = document.getElementById('mobileUserRole');
+    
+    if (isAuth && userProfile) {
+        // Show user menu
+        if (guestMenu) guestMenu.style.display = 'none';
+        if (userMenu) userMenu.style.display = 'block';
+        
+        // Update user info
+        if (mobileUserName) mobileUserName.textContent = userProfile.full_name || 'User';
+        if (mobileUserRole) mobileUserRole.textContent = userProfile.role || 'user';
+        
+        // Show role-specific menu items
+        if (userProfile.role === 'seller') {
+            if (buyerMenuItems) buyerMenuItems.style.display = 'none';
+            if (sellerMenuItems) sellerMenuItems.style.display = 'block';
+        } else {
+            if (buyerMenuItems) buyerMenuItems.style.display = 'block';
+            if (sellerMenuItems) sellerMenuItems.style.display = 'none';
+        }
+    } else {
+        // Show guest menu
+        if (guestMenu) guestMenu.style.display = 'block';
+        if (userMenu) userMenu.style.display = 'none';
+    }
+}
+
+// Listen for auth state changes
+document.addEventListener('authStateChanged', function() {
+    updateNavigationUI();
+});
+
+// Desktop Exit Button Logic
+const desktopExitBtn = document.getElementById('desktopExitBtn');
+if (desktopExitBtn) {
+    desktopExitBtn.addEventListener('click', function() {
+        if (confirm('Apakah Anda yakin ingin keluar dari situs AsaHub?')) {
+            // Try to close window directly first
+            if (window.history.length > 1) {
+                // If there's history, go back to previous page
+                window.history.back();
+            } else {
+                // If no history, try to close the window
+                window.close();
+                
+                // Only redirect to about:blank if window.close() fails and no history
+                setTimeout(() => {
+                    if (!window.closed) {
+                        window.location.href = 'about:blank';
+                    }
+                }, 100);
+            }
+        }
+    });
+}
+
+// Community functions (placeholder - will be implemented by komunitas-manager.js)
+function closeCommunityGuide() {
+    const modal = document.getElementById('communityGuideModal');
+    if (modal) {
+        modal.style.display = 'none';
+    }
+}
+
+function joinGroup(groupId) {
+    if (window.komunitasManager) {
+        window.komunitasManager.joinGroup(groupId);
+    }
+}
+</script>
+
+// Community Guide Modal
+function showCommunityGuide() {
+    const modal = document.getElementById('communityGuideModal');
+    if (modal) {
+        modal.classList.add('open');
+    }
+}
+
+        if (mobileMenuToggle && mobileNavMenu) {
+            mobileMenuToggle.addEventListener('click', function() {
+                mobileNavMenu.classList.add('active');
+                mobileNavOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        }
+
+        if (mobileNavClose && mobileNavMenu) {
+            mobileNavClose.addEventListener('click', function() {
+                mobileNavMenu.classList.remove('active');
+                mobileNavOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        }
+
+        if (mobileNavOverlay && mobileNavMenu) {
+            mobileNavOverlay.addEventListener('click', function() {
+                mobileNavMenu.classList.remove('active');
+                mobileNavOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        }
+    }
+    setupMobileSidebar();
+}
+
+// Initialize community manager
+document.addEventListener('DOMContentLoaded', function() {
+    // Community manager will be initialized from komunitas-manager.js
+});
+
+// Community Guide Modal
+function showCommunityGuide() {
+    const modal = document.getElementById('communityGuideModal');
+    if (modal) {
+        modal.classList.add('open');
+    }
+}
+
+function closeCommunityGuide() {
+    const modal = document.getElementById('communityGuideModal');
+    if (modal) {
+        modal.classList.remove('open');
+
+</body>
+</html>
+
+

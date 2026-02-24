@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masuk - AsaHub</title>
+    <link rel="icon" type="image/png" href="img/logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.7"></script>
+    <script src="js/supabase-config.js"></script>
+    <script src="js/auth-service.js"></script>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --brand: #FFC107;
+            --bg: #0a0a0a;
+            --bg3: #1a1a1a;
+            --border: rgba(255,255,255,0.08);
+            --text: #ffffff;
+            --text-muted: #888888;
+            --nav-h: 64px;
+        }
+
+        html, body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'DM Sans', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            height: var(--nav-h);
+            background: var(--brand);
+            display: flex;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+        }
+
+        .nav-container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .nav-logo {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #ffffff;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        .nav-logo span { color: #000000; }
+
+        .nav-links {
+            display: flex;
+            gap: 4px;
+            flex: 1;
+        }
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding: 8px 14px;
+            border-radius: 8px;
+            transition: background 0.2s;
+        }
+        .nav-links a:hover { background: rgba(0,0,0,0.15); }
+
+        .nav-auth {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-outline {
+            padding: 8px 20px;
+            border: 2px solid #ffffff;
+            border-radius: 8px;
+            color: #ffffff;
+            background: transparent;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+        }
+        .btn-outline:hover { background: rgba(255,255,255,0.2); }
+
+        .btn-primary {
+            padding: 8px 20px;
+            border: 2px solid #000000;
+            border-radius: 8px;
+            color: #ffffff;
+            background: #000000;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+        }
+        .btn-primary:hover { background: #222; }
+
+        /* Desktop Dropdown */
+        .desktop-dropdown { position: relative; }
+        .desktop-dropdown-toggle {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 14px;
+            background: rgba(0,0,0,0.15);
+            border: none;
+            border-radius: 8px;
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .desktop-dropdown-toggle:hover { background: rgba(0,0,0,0.25); }
+
+        .desktop-dropdown-menu {
+            display: none;
+            position: absolute;
+            top: calc(100% + 8px);
+            right: 0;
+            background: #1a1a1a;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            min-width: 240px;
+            padding: 8px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+            z-index: 1001;
+        }
+        .desktop-dropdown-menu.show { display: block; }
+
+        .desktop-dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 14px;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            background: none;
+            border: none;
+            width: 100%;
+            cursor: pointer;
+            transition: background 0.2s;
+            text-align: left;
+        }
+        .desktop-dropdown-item:hover { background: rgba(255,193,7,0.1); color: var(--brand); }
+        .desktop-dropdown-item i { width: 16px; color: var(--brand); flex-shrink: 0; }
+        .desktop-dropdown-divider { height: 1px; background: rgba(255,255,255,0.08); margin: 6px 0; }
+
+        /* Mobile toggle */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #ffffff;
+            font-size: 1.3rem;
+            cursor: pointer;
+            padding: 8px;
+            margin-left: auto;
+        }
+
+        /* ===== MOBILE SIDEBAR ===== */
+        .mobile-nav-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            z-index: 1100;
+        }
+        .mobile-nav-overlay.active { display: block; }
+
+        .mobile-nav-menu {
+            position: fixed;
+            top: 0; left: -100%;
+            width: 280px;
+            height: 100vh;
+            background: #1a1a1a;
+            z-index: 1200;
+            transition: left 0.3s ease;
+            overflow-y: auto;
+        }
+        .mobile-nav-menu.active { left: 0; }
+
+        .mobile-nav-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 20px;
+            background: var(--brand);
+        }
+        .mobile-nav-logo {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #ffffff;
+        }
+        .mobile-nav-logo span { color: #000000; }
+        .mobile-nav-header-buttons { display: flex; gap: 8px; }
+        .mobile-nav-exit, .mobile-nav-close {
+            background: rgba(0,0,0,0.2);
+            border: none;
+            color: #ffffff;
+            width: 34px; height: 34px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            display: flex; align-items: center; justify-content: center;
+        }
+
+        .mobile-nav-title {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            color: var(--brand);
+            text-transform: uppercase;
+            padding: 16px 20px 8px;
+            display: block;
+        }
+
+        .mobile-nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 20px;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+        .mobile-nav-item:hover { background: rgba(255,193,7,0.1); color: var(--brand); }
+        .mobile-nav-item i { width: 18px; color: var(--brand); }
+
+        /* ===== MOBILE BOTTOM NAV ===== */
+        .mobile-bottom-nav {
+            display: none;
+            position: fixed;
+            bottom: 0; left: 0; right: 0;
+            height: 60px;
+            background: var(--brand);
+            z-index: 1000;
+            align-items: center;
+            justify-content: space-around;
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.3);
+        }
+        .mobile-bottom-nav a {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+            height: 100%;
+            color: rgba(0,0,0,0.5);
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: color 0.2s;
+        }
+        .mobile-bottom-nav a.active,
+        .mobile-bottom-nav a:hover { color: #000000; }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .nav-links, .nav-auth { display: none; }
+            .mobile-menu-toggle { display: flex; }
+            .mobile-bottom-nav { display: flex; }
+            body { padding-bottom: 60px; }
+            .navbar { height: 56px; }
+            .login-container { padding-top: 76px; }
+        }
+
+        @media (min-width: 769px) {
+            .mobile-bottom-nav { display: none !important; }
+            .mobile-menu-toggle { display: none !important; }
+        }
+
+        /* ===== LOGIN PAGE ===== */
+        .login-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: calc(var(--nav-h) + 40px) 20px 40px;
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+        }
+
+        .login-card {
+            background: var(--brand);
+            border-radius: 20px;
+            padding: 40px;
+            width: 100%;
+            max-width: 480px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+            text-align: center;
+        }
+
+        .login-logo {
+            font-family: 'Syne', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+        .login-logo span { color: #ffffff; }
+
+        .login-subtitle {
+            color: rgba(255,255,255,0.85);
+            font-size: 14px;
+            margin-bottom: 32px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+            text-align: left;
+        }
+
+        .form-label {
+            color: #ffffff;
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: block;
+            font-size: 14px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid rgba(255,255,255,0.25);
+            border-radius: 10px;
+            background: rgba(255,255,255,0.15);
+            color: #ffffff;
+            font-size: 15px;
+            font-family: 'DM Sans', sans-serif;
+            transition: all 0.3s ease;
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: #ffffff;
+            background: rgba(255,255,255,0.25);
+        }
+        .form-input::placeholder { color: rgba(255,255,255,0.5); }
+
+        /* Fix select option color */
+        .form-input option {
+            background: #1a1a1a;
+            color: #ffffff;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+            background: #000000;
+            color: #ffffff;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            font-family: 'DM Sans', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .login-btn:hover { background: #222; transform: translateY(-1px); }
+
+        .login-divider {
+            color: rgba(255,255,255,0.7);
+            margin: 20px 0;
+            font-size: 14px;
+        }
+
+        .register-link {
+            color: rgba(255,255,255,0.85);
+            font-size: 14px;
+        }
+        .register-link a {
+            color: #ffffff;
+            font-weight: 700;
+            text-decoration: underline;
+        }
+
+        .error-message {
+            background: rgba(0,0,0,0.2);
+            color: #ffffff;
+            padding: 10px 14px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            font-size: 14px;
+            display: none;
+            text-align: left;
+        }
+
+        .success-message {
+            background: rgba(0,0,0,0.2);
+            color: #ffffff;
+            padding: 10px 14px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            font-size: 14px;
+            display: none;
+            text-align: center;
+        }
+
+        @media (max-width: 480px) {
+            .login-card { padding: 28px 20px; }
+            .login-logo { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar">
+    <div class="nav-container">
+        <a href="index.html" class="nav-logo">Asa<span>Hub</span></a>
+
+        <div class="nav-links">
+            <a href="index.html">Marketplace</a>
+            <a href="jasa.html">Jasa</a>
+            <a href="edukasi.html">Edukasi</a>
+            <a href="komunitas.html">Komunitas</a>
+            <a href="tentang.html">Tentang</a>
+        </div>
+
+        <div class="nav-auth">
+            <a href="login.html" class="btn-outline">Masuk</a>
+            <a href="daftar.html" class="btn-primary">Daftar</a>
+            <div class="desktop-dropdown">
+                <button class="desktop-dropdown-toggle" id="desktopDropdownToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="desktop-dropdown-menu" id="desktopDropdownMenu">
+                    <a href="login.html" class="desktop-dropdown-item">
+                        <i class="fas fa-user"></i><span>Login sebagai User</span>
+                    </a>
+                    <a href="login.html" class="desktop-dropdown-item">
+                        <i class="fas fa-store"></i><span>Login sebagai Seller</span>
+                    </a>
+                    <a href="login.html" class="desktop-dropdown-item">
+                        <i class="fas fa-tools"></i><span>Login sebagai Penyedia Jasa</span>
+                    </a>
+                    <a href="login.html" class="desktop-dropdown-item">
+                        <i class="fas fa-graduation-cap"></i><span>Login sebagai Mentor Edukasi</span>
+                    </a>
+                    <div class="desktop-dropdown-divider"></div>
+                    <button class="desktop-dropdown-item" id="exitWebsite">
+                        <i class="fas fa-sign-out-alt"></i><span>Keluar dari Website</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <button class="mobile-menu-toggle" id="mobileMenuToggle">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+</nav>
+
+<!-- ===== MOBILE SIDEBAR ===== -->
+<div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+<div class="mobile-nav-menu" id="mobileNavMenu">
+    <div class="mobile-nav-header">
+        <div class="mobile-nav-logo">Asa<span>Hub</span></div>
+        <div class="mobile-nav-header-buttons">
+            <button class="mobile-nav-exit" id="mobileNavExit">
+                <i class="fas fa-sign-out-alt"></i>
+            </button>
+            <button class="mobile-nav-close" id="mobileNavClose">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
+    <div class="mobile-nav-content">
+        <span class="mobile-nav-title">MENU UTAMA</span>
+        <a href="index.html" class="mobile-nav-item"><i class="fas fa-home"></i><span>Marketplace</span></a>
+        <a href="jasa.html" class="mobile-nav-item"><i class="fas fa-tools"></i><span>Jasa</span></a>
+        <a href="edukasi.html" class="mobile-nav-item"><i class="fas fa-graduation-cap"></i><span>Edukasi</span></a>
+        <a href="komunitas.html" class="mobile-nav-item"><i class="fas fa-users"></i><span>Komunitas</span></a>
+        <a href="tentang.html" class="mobile-nav-item"><i class="fas fa-info-circle"></i><span>Tentang</span></a>
+        <span class="mobile-nav-title">AUTENTIKASI</span>
+        <a href="login.html" class="mobile-nav-item"><i class="fas fa-sign-in-alt"></i><span>Masuk</span></a>
+        <a href="daftar.html" class="mobile-nav-item"><i class="fas fa-user-plus"></i><span>Daftar</span></a>
+    </div>
+</div>
+
+<!-- ===== LOGIN FORM ===== -->
+<div class="login-container">
+    <div class="login-card">
+        <div class="login-logo">Asa<span>Hub</span></div>
+        <div class="login-subtitle">Pusat Harapan — Menyatukan Peluang Bisnis</div>
+
+        <div class="error-message" id="errorMessage"></div>
+        <div class="success-message" id="successMessage"></div>
+
+        <form id="loginForm">
+            <div class="form-group">
+                <label class="form-label">Email *</label>
+                <input type="email" class="form-input" id="email" placeholder="nama@email.com" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Password *</label>
+                <input type="password" class="form-input" id="password" placeholder="Masukkan password" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Jenis Akun *</label>
+                <select class="form-input" id="accountType" required>
+                    <option value="">Pilih jenis akun</option>
+                    <option value="user">👤 User</option>
+                    <option value="seller">🏪 Seller</option>
+                    <option value="provider">🛠️ Penyedia Jasa</option>
+                    <option value="mentor">🎓 Mentor Edukasi</option>
+                </select>
+            </div>
+
+            <button type="submit" class="login-btn" id="loginBtn">
+                <i class="fas fa-sign-in-alt"></i> Masuk
+            </button>
+        </form>
+
+        <div class="login-divider">atau</div>
+
+        <div class="register-link">
+            Belum punya akun? <a href="daftar.html">Daftar Sekarang</a>
+        </div>
+    </div>
+</div>
+
+<!-- ===== MOBILE BOTTOM NAV ===== -->
+<nav class="mobile-bottom-nav">
+    <a href="index.html"><i class="fas fa-home"></i></a>
+    <a href="jasa.html"><i class="fas fa-briefcase"></i></a>
+    <a href="edukasi.html"><i class="fas fa-graduation-cap"></i></a>
+    <a href="komunitas.html"><i class="fas fa-users"></i></a>
+    <a href="tentang.html"><i class="fas fa-info-circle"></i></a>
+    <a href="login.html" class="active"><i class="fas fa-user"></i></a>
+</nav>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+
+    // ===== LOGIN FORM =====
+    const loginForm = document.getElementById('loginForm');
+    const errorMsg = document.getElementById('errorMessage');
+    const successMsg = document.getElementById('successMessage');
+    const loginBtn = document.getElementById('loginBtn');
+
+    loginForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value;
+        const accountType = document.getElementById('accountType').value;
+
+        if (!email || !password || !accountType) {
+            showError('Semua field wajib diisi!');
+            return;
+        }
+
+        // Loading state
+        loginBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Memproses...';
+        loginBtn.disabled = true;
+
+        // Simpan state login
+        localStorage.setItem('userLoggedIn', 'true');
+        localStorage.setItem('userType', accountType);
+        localStorage.setItem('userName', email.split('@')[0] || 'User');
+        localStorage.setItem('userEmail', email);
+
+        showSuccess('Login berhasil! Mengalihkan...');
+
+        setTimeout(function() {
+            switch(accountType) {
+                case 'user':     window.location.href = 'index.html'; break;
+                case 'seller':   window.location.href = 'seller-dashboard.html'; break;
+                case 'provider': window.location.href = 'jasa-dashboard.html'; break;
+                case 'mentor':   window.location.href = 'edukasi-dashboard.html'; break;
+                default: showError('Jenis akun tidak valid!');
+            }
+        }, 1200);
+    });
+
+    function showError(msg) {
+        errorMsg.textContent = msg;
+        errorMsg.style.display = 'block';
+        successMsg.style.display = 'none';
+        loginBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Masuk';
+        loginBtn.disabled = false;
+        setTimeout(function() { errorMsg.style.display = 'none'; }, 5000);
+    }
+
+    function showSuccess(msg) {
+        successMsg.textContent = msg;
+        successMsg.style.display = 'block';
+        errorMsg.style.display = 'none';
+    }
+
+    // ===== DESKTOP DROPDOWN =====
+    const ddToggle = document.getElementById('desktopDropdownToggle');
+    const ddMenu = document.getElementById('desktopDropdownMenu');
+
+    ddToggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        ddMenu.classList.toggle('show');
+    });
+
+    document.addEventListener('click', function() {
+        ddMenu.classList.remove('show');
+    });
+
+    document.getElementById('exitWebsite').addEventListener('click', function() {
+        if (confirm('Apakah kamu yakin ingin keluar dari website ini?')) {
+            window.close();
+            setTimeout(function() { window.location.href = 'about:blank'; }, 300);
+        }
+    });
+
+    // ===== MOBILE SIDEBAR =====
+    const mobileToggle = document.getElementById('mobileMenuToggle');
+    const mobileMenu = document.getElementById('mobileNavMenu');
+    const mobileOverlay = document.getElementById('mobileNavOverlay');
+    const mobileClose = document.getElementById('mobileNavClose');
+    const mobileExit = document.getElementById('mobileNavExit');
+
+    function openSidebar() {
+        mobileMenu.classList.add('active');
+        mobileOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeSidebar() {
+        mobileMenu.classList.remove('active');
+        mobileOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    mobileToggle.addEventListener('click', openSidebar);
+    mobileClose.addEventListener('click', closeSidebar);
+    mobileOverlay.addEventListener('click', closeSidebar);
+    mobileExit.addEventListener('click', function() {
+        if (confirm('Apakah kamu yakin ingin keluar dari website ini?')) {
+            window.close();
+            setTimeout(function() { window.location.href = 'about:blank'; }, 300);
+        }
+    });
+
+});
+</script>
+
+</body>
+</html>

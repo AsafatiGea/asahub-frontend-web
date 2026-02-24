@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jasa & Pekerjaan - AsaHub (DEBUG)</title>
+    <link rel="icon" type="image/png" href="img/logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CSS Modular -->
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/jasa.css">
+    <link rel="stylesheet" href="css/responsive-mobile.css">
+    <link rel="stylesheet" href="css/responsive-desktop.css">
+    <link rel="stylesheet" href="css/mobile-navigation.css">
+    <link rel="stylesheet" href="css/enhanced-buttons.css">
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar">
+    <div class="nav-container">
+        <a href="index.html" class="nav-logo">Asa<span>Hub</span></a>
+        
+        <div class="nav-links">
+            <a href="index.html">Marketplace</a>
+            <a href="jasa.html" class="active">Jasa</a>
+            <a href="edukasi.html">Edukasi</a>
+            <a href="komunitas.html">Komunitas</a>
+            <a href="tentang.html">Tentang</a>
+        </div>
+        
+        <!-- Desktop Auth Buttons -->
+        <div class="nav-auth desktop-only" id="navAuth">
+            <a href="login.html" class="btn btn-outline">Masuk</a>
+            <a href="daftar.html" class="btn btn-primary">Daftar</a>
+            
+            <!-- User Settings Icon (shown when logged in) -->
+            <a href="profil-user.html" class="user-settings-icon" id="userSettingsIcon" style="display: none;">
+                <i class="fas fa-cog"></i>
+            </a>
+            
+            <!-- Desktop Dropdown Menu -->
+            <div class="desktop-dropdown">
+                <button class="desktop-dropdown-toggle" id="desktopDropdownToggle">
+                    <i class="fas fa-th"></i>
+                    <span>Menu</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="desktop-dropdown-menu" id="desktopDropdownMenu">
+                    <a href="login.html?role=user" class="desktop-dropdown-item">
+                        <i class="fas fa-user"></i>
+                        <span>Login sebagai User</span>
+                    </a>
+                    <a href="login.html?role=seller" class="desktop-dropdown-item">
+                        <i class="fas fa-store"></i>
+                        <span>Login sebagai Seller</span>
+                    </a>
+                    <a href="login.html?role=provider" class="desktop-dropdown-item">
+                        <i class="fas fa-tools"></i>
+                        <span>Login sebagai Penyedia Jasa</span>
+                    </a>
+                    <a href="login.html?role=mentor" class="desktop-dropdown-item">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>Login sebagai Mentor Edukasi</span>
+                    </a>
+                    <div class="desktop-dropdown-divider"></div>
+                    <button class="desktop-dropdown-item" id="desktopDropdownExit">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Keluar dari Website</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-menu-toggle mobile-only" id="mobileMenuToggle">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="jasa-hero">
+    <div class="jasa-hero-content">
+        <h1 class="jasa-title">Platform Jasa & Pekerjaan</h1>
+        <p class="jasa-subtitle">Temukan tenaga ahli dan profesional, atau tawarkan keahlianmu sendiri</p>
+        <a href="daftar.html" class="jasa-cta">Daftar Sebagai Penyedia Jasa</a>
+    </div>
+</section>
+
+<!-- Categories Section -->
+<section class="jasa-categories">
+    <div class="jasa-categories-content">
+        <div class="jasa-categories-grid">
+            <div class="jasa-category-card" onclick="filterByCategory('all')">
+                <div class="jasa-category-icon">🛠️</div>
+                <div class="jasa-category-name">Semua Jasa</div>
+                <div class="jasa-category-count" id="countAll">0</div>
+            </div>
+            <div class="jasa-category-card" onclick="filterByCategory('otomotif')">
+                <div class="jasa-category-icon">🔧</div>
+                <div class="jasa-category-name">Otomotif</div>
+                <div class="jasa-category-count" id="countOtomotif">0</div>
+            </div>
+            <div class="jasa-category-card" onclick="filterByCategory('konstruksi')">
+                <div class="jasa-category-icon">🏗️</div>
+                <div class="jasa-category-name">Konstruksi</div>
+                <div class="jasa-category-count" id="countKonstruksi">0</div>
+            </div>
+            <div class="jasa-category-card" onclick="filterByCategory('teknologi')">
+                <div class="jasa-category-icon">💻</div>
+                <div class="jasa-category-name">Teknologi</div>
+                <div class="jasa-category-count" id="countTeknologi">0</div>
+            </div>
+            <div class="jasa-category-card" onclick="filterByCategory('kreatif')">
+                <div class="jasa-category-icon">🎨</div>
+                <div class="jasa-category-name">Kreatif</div>
+                <div class="jasa-category-count" id="countKreatif">0</div>
+            </div>
+            <div class="jasa-category-card" onclick="filterByCategory('rumah-tangga')">
+                <div class="jasa-category-icon">🏠</div>
+                <div class="jasa-category-name">Rumah Tangga</div>
+                <div class="jasa-category-count" id="countRumahTangga">0</div>
+            </div>
+            <div class="jasa-category-card" onclick="filterByCategory('pendidikan')">
+                <div class="jasa-category-icon">📚</div>
+                <div class="jasa-category-name">Pendidikan</div>
+                <div class="jasa-category-count" id="countPendidikan">0</div>
+            </div>
+            <div class="jasa-category-card" onclick="filterByCategory('lainnya')">
+                <div class="jasa-category-icon">📦</div>
+                <div class="jasa-category-name">Lainnya</div>
+                <div class="jasa-category-count" id="countLainnya">0</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Layout -->
+<div class="services-layout">
+    <!-- Services Sidebar (Desktop) -->
+    <aside class="services-sidebar desktop-only">
+        <div class="filter-section">
+            <div class="filter-header">
+                <h3 class="filter-title">Filter Harga</h3>
+                <button class="filter-clear" onclick="clearFilters()">Reset</button>
+            </div>
+            <div class="price-range">
+                <div class="price-inputs">
+                    <input type="number" class="price-input" placeholder="Min" id="minPrice" onchange="filterServices()">
+                    <span class="price-separator">-</span>
+                    <input type="number" class="price-input" placeholder="Max" id="maxPrice" onchange="filterServices()">
+                </div>
+            </div>
+        </div>
+
+        <div class="filter-section">
+            <div class="filter-header">
+                <h3 class="filter-title">Lokasi</h3>
+            </div>
+            <div class="filter-options">
+                <div class="filter-option">
+                    <input type="checkbox" id="loc-online" value="online" onchange="filterServices()">
+                    <label for="loc-online">Online</label>
+                </div>
+                <div class="filter-option">
+                    <input type="checkbox" id="loc-medan" value="medan" onchange="filterServices()">
+                    <label for="loc-medan">Medan</label>
+                </div>
+                <div class="filter-option">
+                    <input type="checkbox" id="loc-padang" value="padang" onchange="filterServices()">
+                    <label for="loc-padang">Padang</label>
+                </div>
+                <div class="filter-option">
+                    <input type="checkbox" id="loc-nias" value="nias" onchange="filterServices()">
+                    <label for="loc-nias">Nias</label>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Services Main -->
+    <main class="services-main">
+        <!-- Services Header -->
+        <div class="services-header">
+            <h2 class="services-title">Jasa Tersedia</h2>
+            <div class="services-controls">
+                <div class="services-search">
+                    <div class="search-bar">
+                        <span class="search-icon">🔍</span>
+                        <input type="text" class="search-input" placeholder="Cari jasa..." id="searchInput" onkeyup="filterServices()">
+                    </div>
+                </div>
+                <select class="form-select services-sort" id="sortSelect" onchange="sortServices()">
+                    <option value="newest">Terbaru</option>
+                    <option value="price-low">Harga Terendah</option>
+                    <option value="price-high">Harga Tertinggi</option>
+                    <option value="popular">Terpopuler</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Services Grid -->
+        <div class="services-grid" id="servicesGrid">
+            <!-- Service 1 -->
+            <div class="service-card" data-category="otomotif">
+                <div class="service-header">
+                    <div class="service-icon">🔧</div>
+                    <div class="service-type">Otomotif</div>
+                </div>
+                <div class="service-body">
+                    <h3 class="service-title">Service Mobil Panggilan</h3>
+                    <div class="service-instructor">
+                        <div class="instructor-avatar">B</div>
+                        <div class="instructor-name">Bengkel Maju Jaya</div>
+                    </div>
+                    <p class="service-description">Perbaikan mobil di rumah Anda. Ganti oli, tune-up, dan perbaikan umum.</p>
+                    <div class="service-features">
+                        <div class="service-feature">
+                            <span class="service-feature-icon">✓</span>
+                            <span>Profesional</span>
+                        </div>
+                        <div class="service-feature">
+                            <span class="service-feature-icon">✓</span>
+                            <span>Bergaransi</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="service-footer">
+                    <div class="service-price">Rp 500.000</div>
+                    <div class="service-rating">
+                        <span>⭐</span>
+                        <span>4.5</span>
+                    </div>
+                </div>
+                <div class="service-actions">
+                    <button class="service-button btn-secondary-service">Detail</button>
+                    <a href="https://wa.me/628123456789?text=Halo, saya tertarik dengan Service Mobil Panggilan" class="service-button btn-primary-service" target="_blank">Hubungi</a>
+                </div>
+            </div>
+
+            <!-- Service 2 -->
+            <div class="service-card" data-category="teknologi">
+                <div class="service-header">
+                    <div class="service-icon">💻</div>
+                    <div class="service-type">Teknologi</div>
+                </div>
+                <div class="service-body">
+                    <h3 class="service-title">Web Development</h3>
+                    <div class="service-instructor">
+                        <div class="instructor-avatar">T</div>
+                        <div class="instructor-name">Tech Solution</div>
+                    </div>
+                    <p class="service-description">Pembuatan website profesional untuk bisnis Anda dengan desain modern.</p>
+                    <div class="service-features">
+                        <div class="service-feature">
+                            <span class="service-feature-icon">✓</span>
+                            <span>Profesional</span>
+                        </div>
+                        <div class="service-feature">
+                            <span class="service-feature-icon">✓</span>
+                            <span>Bergaransi</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="service-footer">
+                    <div class="service-price">Rp 5.000.000</div>
+                    <div class="service-rating">
+                        <span>⭐</span>
+                        <span>4.8</span>
+                    </div>
+                </div>
+                <div class="service-actions">
+                    <button class="service-button btn-secondary-service">Detail</button>
+                    <a href="https://wa.me/628123456788?text=Halo, saya tertarik dengan Web Development" class="service-button btn-primary-service" target="_blank">Hubungi</a>
+                </div>
+            </div>
+
+            <!-- Service 3 -->
+            <div class="service-card" data-category="kreatif">
+                <div class="service-header">
+                    <div class="service-icon">🎨</div>
+                    <div class="service-type">Kreatif</div>
+                </div>
+                <div class="service-body">
+                    <h3 class="service-title">Logo Design</h3>
+                    <div class="service-instructor">
+                        <div class="instructor-avatar">C</div>
+                        <div class="instructor-name">Creative Studio</div>
+                    </div>
+                    <p class="service-description">Desain logo profesional untuk brand Anda dengan konsep yang unik dan menarik.</p>
+                    <div class="service-features">
+                        <div class="service-feature">
+                            <span class="service-feature-icon">✓</span>
+                            <span>Profesional</span>
+                        </div>
+                        <div class="service-feature">
+                            <span class="service-feature-icon">✓</span>
+                            <span>Bergaransi</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="service-footer">
+                    <div class="service-price">Rp 750.000</div>
+                    <div class="service-rating">
+                        <span>⭐</span>
+                        <span>4.7</span>
+                    </div>
+                </div>
+                <div class="service-actions">
+                    <button class="service-button btn-secondary-service">Detail</button>
+                    <a href="https://wa.me/628123456787?text=Halo, saya tertarik dengan Logo Design" class="service-button btn-primary-service" target="_blank">Hubungi</a>
+                </div>
+            </div>
+
+            <!-- Service 4 -->
+            <div class="service-card" data-category="konstruksi">
+                <div class="service-header">
+                    <div class="service-icon">🏗️</div>
+                    <div class="service-type">Konstruksi</div>
+                </div>
+                <div class="service-body">
+                    <h3 class="service-title">Renovasi Rumah</h3>
+                    <div class="service-instructor">
+                        <div class="instructor-avatar">K</div>
+                        <div class="instructor-name">Kontraktor Sejahtera</div>
+                    </div>
+                    <p class="service-description">Renovasi rumah minimalis dengan desain modern dan kualitas terbaik.</p>
+                    <div class="service-features">
+                        <div class="service-feature">
+                            <span class="service-feature-icon">✓</span>
+                            <span>Profesional</span>
+                        </div>
+                        <div class="service-feature">
+                            <span class="service-feature-icon">✓</span>
+                            <span>Bergaransi</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="service-footer">
+                    <div class="service-price">Rp 15.000.000</div>
+                    <div class="service-rating">
+                        <span>⭐</span>
+                        <span>4.9</span>
+                    </div>
+                </div>
+                <div class="service-actions">
+                    <button class="service-button btn-secondary-service">Detail</button>
+                    <a href="https://wa.me/628123456786?text=Halo, saya tertarik dengan Renovasi Rumah" class="service-button btn-primary-service" target="_blank">Hubungi</a>
+                </div>
+            </div>
+
+            <!-- Service 5 -->
+            <div class="service-card" data-category="pendidikan">
+                <div class="service-header">
+                    <div class="service-icon">📚</div>
+                    <div class="service-type">Pendidikan</div>
+                </div>
+                <div class="service-body">
+                    <h3 class="service-title">Private Math Tutor</h3>
+                    <div class="service-instructor">
+                        <div class="instructor-avatar">E</div>
+                        <div class="instructor-name">EduCenter</div>
+                    </div>
+                    <p class="service-description">Les privat matematika untuk SD, SMP, SMA dengan metode yang efektif.</p>
+                    <div class="service-features">
+                        <div class="service-feature">
+                            <span class="service-feature-icon">✓</span>
+                            <span>Profesional</span>
+                        </div>
+                        <div class="service-feature">
+                            <span class="service-feature-icon">✓</span>
+                            <span>Bergaransi</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="service-footer">
+                    <div class="service-price">Rp 100.000/jam</div>
+                    <div class="service-rating">
+                        <span>⭐</span>
+                        <span>4.6</span>
+                    </div>
+                </div>
+                <div class="service-actions">
+                    <button class="service-button btn-secondary-service">Detail</button>
+                    <a href="https://wa.me/628123456785?text=Halo, saya tertarik dengan Private Math Tutor" class="service-button btn-primary-service" target="_blank">Hubungi</a>
+                </div>
+            </div>
+
+            <!-- Service 6 -->
+            <div class="service-card" data-category="rumah-tangga">
+                <div class="service-header">
+                    <div class="service-icon">🏠</div>
+                    <div class="service-type">Rumah Tangga</div>
+                </div>
+                <div class="service-body">
+                    <h3 class="service-title">Cleaning Service</h3>
+                    <div class="service-instructor">
+                        <div class="instructor-avatar">C</div>
+                        <div class="instructor-name">CleanPro</div>
+                    </div>
+                    <p class="service-description">Membersihkan rumah atau kantor dengan peralatan lengkap dan profesional.</p>
+                    <div class="service-features">
+                        <div class="service-feature">
+                            <span class="service-feature-icon">✓</span>
+                            <span>Profesional</span>
+                        </div>
+                        <div class="service-feature">
+                            <span class="service-feature-icon">✓</span>
+                            <span>Bergaransi</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="service-footer">
+                    <div class="service-price">Rp 200.000</div>
+                    <div class="service-rating">
+                        <span>⭐</span>
+                        <span>4.4</span>
+                    </div>
+                </div>
+                <div class="service-actions">
+                    <button class="service-button btn-secondary-service">Detail</button>
+                    <a href="https://wa.me/628123456784?text=Halo, saya tertarik dengan Cleaning Service" class="service-button btn-primary-service" target="_blank">Hubungi</a>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<!-- Mobile Bottom Navigation -->
+<nav class="mobile-bottom-nav mobile-only">
+    <a href="index.html" class="mobile-nav-item">
+        <i class="fas fa-home"></i>
+    </a>
+    <a href="jasa.html" class="mobile-nav-item active">
+        <i class="fas fa-briefcase"></i>
+    </a>
+    <a href="edukasi.html" class="mobile-nav-item">
+        <i class="fas fa-graduation-cap"></i>
+    </a>
+    <a href="komunitas.html" class="mobile-nav-item">
+        <i class="fas fa-users"></i>
+    </a>
+    <a href="tentang.html" class="mobile-nav-item">
+        <i class="fas fa-info-circle"></i>
+    </a>
+    <a href="login.html" class="mobile-nav-item">
+        <i class="fas fa-user"></i>
+    </a>
+</nav>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-top">
+        <div class="footer-brand">
+            <div class="nav-logo" style="font-size:24px;">Asa<span>Hub</span></div>
+            <p>Pusat Harapan — Menyatukan individu dan brand dalam ekosistem bisnis yang stabil dan berkembang.</p>
+        </div>
+        <div class="footer-links">
+            <div class="footer-col">
+                <h4>Platform</h4>
+                <a href="index.html">Marketplace</a>
+                <a href="jasa.html">Jasa & Kerja</a>
+                <a href="edukasi.html">Edukasi</a>
+            </div>
+            <div class="footer-col">
+                <h4>Akun</h4>
+                <a href="daftar.html">Daftar Penjual</a>
+                <a href="login.html">Masuk</a>
+                <a href="dasboard.html">Dashboard</a>
+            </div>
+            <div class="footer-col">
+                <h4>AsaHub</h4>
+                <a href="tentang.html">Tentang Kami</a>
+                <a href="#" title="Segera hadir">Kontak</a>
+                <a href="#" title="Segera hadir">Kebijakan Privasi</a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p> 2026 AsaHub · asahub.site · Dibuat dengan ❤️ oleh Asafati Gea</p>
+    </div>
+</footer>
+
+<!-- Simple JavaScript -->
+<script>
+// Simple filter function
+function filterByCategory(category) {
+    const cards = document.querySelectorAll('.service-card');
+    
+    cards.forEach(card => {
+        if (category === 'all') {
+            card.style.display = 'block';
+        } else {
+            if (card.dataset.category === category) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        }
+    });
+    
+    // Update active category
+    document.querySelectorAll('.jasa-category-card').forEach(cat => {
+        cat.classList.remove('active');
+    });
+    
+    event.target.closest('.jasa-category-card').classList.add('active');
+}
+
+function filterServices() {
+    console.log('Filter services called');
+}
+
+function sortServices() {
+    console.log('Sort services called');
+}
+
+function clearFilters() {
+    console.log('Clear filters called');
+}
+
+// Check login state and update UI
+function checkLoginState() {
+    const isLoggedIn = localStorage.getItem('userLoggedIn') === 'true';
+    const userType = localStorage.getItem('userType');
+    
+    if (isLoggedIn && userType === 'user') {
+        // Show user settings icon
+        const userSettingsIcon = document.getElementById('userSettingsIcon');
+        if (userSettingsIcon) {
+            userSettingsIcon.style.display = 'inline-flex';
+        }
+        
+        // Hide login/daftar buttons
+        const navAuth = document.getElementById('navAuth');
+        if (navAuth) {
+            const loginBtn = navAuth.querySelector('.btn-outline');
+            const daftarBtn = navAuth.querySelector('.btn-primary');
+            if (loginBtn) loginBtn.style.display = 'none';
+            if (daftarBtn) daftarBtn.style.display = 'none';
+        }
+    }
+}
+
+// Initialize login state check
+document.addEventListener('DOMContentLoaded', checkLoginState);
+
+// Mobile Navigation
+if (typeof setupMobileSidebar === 'undefined') {
+    // Fallback if mobile-navigation.js is not loaded
+    function setupMobileSidebar() {
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const mobileNavMenu = document.getElementById('mobileNavMenu');
+        const mobileNavClose = document.getElementById('mobileNavClose');
+        const mobileNavOverlay = document.getElementById('mobileNavOverlay');
+
+        if (mobileMenuToggle && mobileNavMenu) {
+            mobileMenuToggle.addEventListener('click', function() {
+                mobileNavMenu.classList.add('active');
+                mobileNavOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        }
+
+        if (mobileNavClose && mobileNavMenu) {
+            mobileNavClose.addEventListener('click', function() {
+                mobileNavMenu.classList.remove('active');
+                mobileNavOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        }
+
+        if (mobileNavOverlay && mobileNavMenu) {
+            mobileNavOverlay.addEventListener('click', function() {
+                mobileNavMenu.classList.remove('active');
+                mobileNavOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        }
+    }
+    setupMobileSidebar();
+}
+
+// Initialize
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('Jasa DEBUG page loaded successfully!');
+    console.log('Total service cards:', document.querySelectorAll('.service-card').length);
+});
+</script>
+
+</body>
+</html>
+
+
