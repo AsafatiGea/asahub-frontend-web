@@ -1,533 +1,207 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Seller Dashboard — AsaHub</title>
-  <link rel="icon" type="image/png" href="img/logo.png">
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="css/base.css">
-  <link rel="stylesheet" href="css/layout.css">
-  <link rel="stylesheet" href="css/components.css">
-  <link rel="stylesheet" href="css/seller.css">
-  <link rel="stylesheet" href="css/responsive-mobile.css">
-  <link rel="stylesheet" href="css/responsive-desktop.css">
-  <link rel="stylesheet" href="css/buyer-dashboard-mobile.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seller Dashboard — AsaHub</title>
+
+<link rel="icon" type="image/png" href="img/logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 </head>
-<body>
 
-<div class="seller-dashboard">
-  
-  <!-- Overlay -->
-  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+<body style="margin:0;font-family:'DM Sans',sans-serif;background:#000;color:#fff;overflow-x:hidden;">
 
-  <!-- ═════════════ SIDEBAR ═══════════════ -->
-  <aside class="sidebar" id="sidebar">
-    <div class="sidebar-header">
-      <a href="index.html" class="sidebar-logo">
-        <span class="icon">🛒</span>
-        <span>AsaHub</span>
-      </a>
-      <button type="button" class="sidebar-collapse-btn" id="collapseBtn">«</button>
-      <button type="button" class="sidebar-close" id="sidebarClose">×</button>
-    </div>
+<div style="display:flex;min-height:100vh;">
 
-    <nav class="sidebar-nav">
-      <ul>
-        <li><a href="#" data-section="dashboard" class="active"><span class="icon">📊</span><span>Dashboard</span></a></li>
-        <li><a href="#" data-section="products"><span class="icon">📦</span><span>Produk Saya</span></a></li>
-        <li><a href="#" data-section="add-product"><span class="icon">➕</span><span>Tambah Produk</span></a></li>
-        <li><a href="#" data-section="orders"><span class="icon">📋</span><span>Pesanan</span></a></li>
-        <li><a href="#" data-section="analytics"><span class="icon">📈</span><span>Analytics</span></a></li>
-        <li><a href="#" data-section="profile"><span class="icon">👤</span><span>Profil Toko</span></a></li>
-      </ul>
-    </nav>
+<!-- ===== SIDEBAR ===== -->
+<aside id="sidebar" style="
+width:260px;
+background:#FFC107;
+padding:20px;
+position:fixed;
+height:100vh;
+overflow-y:auto;
+z-index:1000;
+transition:.3s;
+transform:translateX(0);
+">
 
-    <div class="sidebar-footer">
-      <a href="login.html" class="logout-btn" id="sellerLogoutBtn">
-        <span class="icon">🚪</span><span>Keluar</span>
-      </a>
-    </div>
-  </aside>
+<div style="display:flex;align-items:center;margin-bottom:30px;padding-bottom:20px;border-bottom:2px solid rgba(255,255,255,.2);">
 
-  <!-- ═════════════ MAIN CONTENT ═══════════════ -->
-  <main class="main-content">
-    
-    <!-- Top Navbar -->
-    <header class="topbar">
-      <div class="topbar-left">
-        <button type="button" class="sidebar-toggle" id="sidebarToggle">☰</button>
-        <a href="index.html" class="btn btn-outline btn-sm" title="Kembali ke Marketplace">
-          <i class="fas fa-arrow-left"></i>
-          <span class="desktop-only">Marketplace</span>
-        </a>
-        <h1 class="page-title" id="pageTitle">Dashboard</h1>
-      </div>
-      <div class="topbar-right">
-        <div class="user-menu">
-          <div class="user-avatar">S</div>
-          <div class="user-info">
-            <div class="user-name">Seller</div>
-            <div class="user-role">Penjual</div>
-          </div>
-        </div>
-      </div>
-    </header>
+<a href="index.html" style="
+font-family:Syne;
+font-size:1.5rem;
+font-weight:800;
+color:#fff;
+text-decoration:none;
+display:flex;
+align-items:center;
+gap:10px;
+">
 
-    <!-- Content Area -->
-    <div class="content-area">
+<span>🛒</span>
+<span>AsaHub</span>
 
-      <!-- ─── SECTION: Dashboard ─── -->
-      <section id="dashboard" class="content-section active">
-        
-        <div class="welcome-empty">
-          <h3>Selamat Datang Seller! 🎉</h3>
-          <p>Mulai jual produk Anda dan raih kesuksesan di AsaHub</p>
-          <a href="#add-product" class="btn">Tambah Produk</a>
-        </div>
-        
-        <!-- Stats Grid -->
-        <div class="stats-grid">
-          <div class="stat-card">
-            <div class="stat-icon">
-              <i class="fas fa-box"></i>
-            </div>
-            <div class="stat-content">
-              <div class="stat-value" id="totalProducts">0</div>
-              <div class="stat-label">Total Produk</div>
-            </div>
-          </div>
-          
-          <div class="stat-card">
-            <div class="stat-icon success">
-              <i class="fas fa-shopping-cart"></i>
-            </div>
-            <div class="stat-content">
-              <div class="stat-value" id="totalOrders">0</div>
-              <div class="stat-label">Pesanan</div>
-            </div>
-          </div>
-          
-          <div class="stat-card">
-            <div class="stat-icon warning">
-              <i class="fas fa-chart-line"></i>
-            </div>
-            <div class="stat-content">
-              <div class="stat-value" id="totalRevenue">Rp 0</div>
-              <div class="stat-label">Pendapatan</div>
-            </div>
-          </div>
-          
-          <div class="stat-card">
-            <div class="stat-icon info">
-              <i class="fas fa-exclamation-triangle"></i>
-            </div>
-            <div class="stat-content">
-              <div class="stat-value" id="lowStock">0</div>
-              <div class="stat-label">Stok Rendah</div>
-            </div>
-          </div>
-        </div>
+</a>
 
-        <!-- Recent Orders -->
-        <div class="card">
-          <div class="card-header">
-            <h2 class="card-title">Pesanan Terbaru</h2>
-            <button class="btn btn-primary btn-sm">Lihat Semua</button>
-          </div>
-          <div class="orders-list" id="recentOrders">
-            <div class="empty-state">Belum ada pesanan</div>
-          </div>
-        </div>
-
-      </section>
-
-      <!-- ─── SECTION: Products ─── -->
-      <section id="products" class="content-section">
-        <div class="card">
-          <div class="card-header">
-            <h2 class="card-title">Produk Saya</h2>
-            <button class="btn btn-primary" onclick="showSection('add-product')">
-              <i class="fas fa-plus"></i> Tambah Produk
-            </button>
-          </div>
-          <div class="products-grid" id="productsGrid">
-            <!-- Products will be loaded dynamically -->
-          </div>
-        </div>
-      </section>
-
-      <!-- ─── SECTION: Add Product ─── -->
-      <section id="add-product" class="content-section">
-        <div class="card">
-          <div class="card-header">
-            <h2 class="card-title">Tambah Produk Baru</h2>
-          </div>
-          
-          <form id="productForm" class="product-form">
-            <div class="form-row">
-              <div class="form-group">
-                <label class="form-label">Nama Produk *</label>
-                <input type="text" id="productName" class="form-input" placeholder="Masukkan nama produk" required>
-              </div>
-              <div class="form-group">
-                <label class="form-label">Kategori</label>
-                <select id="productCategory" class="form-select">
-                  <option value="">Pilih kategori</option>
-                  <option value="elektronik">Elektronik</option>
-                  <option value="fashion">Fashion</option>
-                  <option value="olahraga">Olahraga</option>
-                  <option value="lainnya">Lainnya</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label class="form-label">Deskripsi</label>
-              <textarea id="productDescription" class="form-textarea" placeholder="Deskripsi produk..." rows="4"></textarea>
-            </div>
-
-            <div class="form-row">
-              <div class="form-group">
-                <label class="form-label">Harga (Rp) *</label>
-                <input type="number" id="productPrice" class="form-input" placeholder="0" min="0" required>
-              </div>
-              <div class="form-group">
-                <label class="form-label">Stok *</label>
-                <input type="number" id="productStock" class="form-input" placeholder="0" min="0" required>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label class="form-label">URL Gambar</label>
-              <input type="url" id="productImage" class="form-input" placeholder="https://example.com/image.jpg">
-            </div>
-
-            <div class="form-actions">
-              <button type="submit" class="btn btn-primary">
-                <i class="fas fa-save"></i> Simpan Produk
-              </button>
-              <button type="button" class="btn btn-secondary" onclick="resetProductForm()">
-                <i class="fas fa-times"></i> Reset
-              </button>
-            </div>
-          </form>
-        </div>
-      </section>
-
-      <!-- ─── SECTION: Orders ─── -->
-      <section id="orders" class="content-section">
-        <div class="card">
-          <div class="card-header">
-            <h2 class="card-title">Semua Pesanan</h2>
-            <div class="filter-group">
-              <select class="form-select" id="orderFilter">
-                <option value="">Semua Status</option>
-                <option value="pending">Menunggu</option>
-                <option value="processing">Diproses</option>
-                <option value="shipped">Dikirim</option>
-                <option value="completed">Selesai</option>
-              </select>
-            </div>
-          </div>
-          <div class="orders-table">
-            <table>
-              <thead>
-                <tr>
-                  <th>ID Order</th>
-                  <th>Customer</th>
-                  <th>Produk</th>
-                  <th>Jumlah</th>
-                  <th>Total</th>
-                  <th>Status</th>
-                  <th>Aksi</th>
-                </tr>
-              </thead>
-              <tbody id="ordersTable">
-                <!-- Orders will be loaded dynamically -->
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
-
-      <!-- ─── SECTION: Analytics ─── -->
-      <section id="analytics" class="content-section">
-        <div class="analytics-grid">
-          <div class="card">
-            <h3 class="card-title">Penjualan Bulanan</h3>
-            <div class="chart-placeholder">
-              <i class="fas fa-chart-line"></i>
-              <p>Grafik penjualan akan ditampilkan di sini</p>
-            </div>
-          </div>
-          
-          <div class="card">
-            <h3 class="card-title">Produk Terlaris</h3>
-            <div class="top-products" id="topProducts">
-              <!-- Top products will be loaded dynamically -->
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ─── SECTION: Profile ─── -->
-      <section id="profile" class="content-section">
-        <div class="card">
-          <div class="card-header">
-            <h2 class="card-title">Profil Toko</h2>
-          </div>
-          
-          <div class="profile-header">
-            <div class="profile-avatar-large" id="storeAvatar">S</div>
-            <div class="profile-info">
-              <h3 id="storeName">Nama Toko</h3>
-              <p id="storeEmail">seller@example.com</p>
-              <p class="member-since">Member sejak 2024</p>
-            </div>
-          </div>
-
-          <form id="profileForm" class="profile-form">
-            <div class="form-row">
-              <div class="form-group">
-                <label class="form-label">Nama Toko</label>
-                <input type="text" id="storeNameInput" class="form-input" value="Nama Toko">
-              </div>
-              <div class="form-group">
-                <label class="form-label">Email</label>
-                <input type="email" id="storeEmailInput" class="form-input" value="seller@example.com">
-              </div>
-            </div>
-
-            <div class="form-row">
-              <div class="form-group">
-                <label class="form-label">Telepon</label>
-                <input type="tel" id="storePhone" class="form-input" placeholder="08xxxxxxxxxx">
-              </div>
-              <div class="form-group">
-                <label class="form-label">Kategori Toko</label>
-                <select id="storeCategory" class="form-select">
-                  <option value="">Pilih kategori</option>
-                  <option value="elektronik">Elektronik</option>
-                  <option value="fashion">Fashion</option>
-                  <option value="olahraga">Olahraga</option>
-                  <option value="lainnya">Lainnya</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label class="form-label">Alamat</label>
-              <textarea id="storeAddress" class="form-textarea" placeholder="Alamat lengkap toko" rows="3"></textarea>
-            </div>
-
-            <div class="form-group">
-              <label class="form-label">Deskripsi Toko</label>
-              <textarea id="storeDescription" class="form-textarea" placeholder="Deskripsi singkat tentang toko Anda" rows="4"></textarea>
-            </div>
-
-            <div class="form-actions">
-              <button type="submit" class="btn btn-primary">
-                <i class="fas fa-save"></i> Simpan Profil
-              </button>
-            </div>
-          </form>
-        </div>
-      </section>
-
-    </div>
-  </main>
-
-  <!-- ═══════════════ MOBILE BOTTOM NAV ═══════════════ -->
-  <nav class="mobile-nav" id="mobileNav">
-    <button class="mobile-nav-item active" data-section="dashboard">
-      <span class="nav-icon">📊</span>
-      <span class="nav-label">Dashboard</span>
-    </button>
-    <button class="mobile-nav-item" data-section="products">
-      <span class="nav-icon">📦</span>
-      <span class="nav-label">Produk</span>
-    </button>
-    <button class="mobile-nav-item" data-section="add-product">
-      <span class="nav-icon">➕</span>
-      <span class="nav-label">Tambah</span>
-    </button>
-    <button class="mobile-nav-item" data-section="orders">
-      <span class="nav-icon">📋</span>
-      <span class="nav-label">Pesanan</span>
-    </button>
-    <button class="mobile-nav-item" data-section="analytics">
-      <span class="nav-icon">📈</span>
-      <span class="nav-label">Analytics</span>
-    </button>
-    <button class="mobile-nav-item" data-section="profile">
-      <span class="nav-icon">👤</span>
-      <span class="nav-label">Profil</span>
-    </button>
-  </nav>
+<button id="sidebarClose" style="
+margin-left:auto;
+background:none;
+border:none;
+color:#fff;
+font-size:24px;
+cursor:pointer;
+">×</button>
 
 </div>
 
-<!-- Scripts -->
-<script src="../js/supabase.js"></script>
-<script src="../js/auth.js"></script>
-<script src="../js/Stakeholder/seller.js"></script>
+<!-- NAV -->
+<nav>
+<div style="display:flex;flex-direction:column;gap:6px;">
+
+<a href="#" data-section="dashboard" class="sidebar-link" style="padding:12px 16px;border-radius:8px;color:#fff;text-decoration:none;display:flex;gap:12px;align-items:center;background:rgba(255,255,255,.2);">
+📊 Dashboard
+</a>
+
+<a href="#" data-section="products" class="sidebar-link" style="padding:12px 16px;border-radius:8px;color:#fff;text-decoration:none;display:flex;gap:12px;align-items:center;">
+📦 Produk Saya
+</a>
+
+<a href="#" data-section="add-product" class="sidebar-link" style="padding:12px 16px;border-radius:8px;color:#fff;text-decoration:none;display:flex;gap:12px;align-items:center;">
+➕ Tambah Produk
+</a>
+
+<a href="#" data-section="orders" class="sidebar-link" style="padding:12px 16px;border-radius:8px;color:#fff;text-decoration:none;display:flex;gap:12px;align-items:center;">
+📋 Pesanan
+</a>
+
+</div>
+</nav>
+
+</aside>
+
+<!-- ===== MAIN CONTENT ===== -->
+<main style="flex:1;margin-left:260px;min-height:100vh;background:#000;">
+
+<!-- TOPBAR -->
+<header style="
+background:#FFC107;
+padding:15px 30px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+">
+
+<div style="display:flex;align-items:center;gap:20px;">
+
+<button id="sidebarToggle" style="
+background:none;
+border:none;
+color:#fff;
+font-size:24px;
+cursor:pointer;
+">☰</button>
+
+<h1 style="
+font-family:Syne;
+font-size:1.5rem;
+margin:0;
+">Dashboard</h1>
+
+</div>
+
+<div style="
+display:flex;
+align-items:center;
+gap:10px;
+background:rgba(255,255,255,.2);
+padding:8px 16px;
+border-radius:25px;
+">
+
+<div style="
+width:35px;
+height:35px;
+border-radius:50%;
+background:#fff;
+color:#FFC107;
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:bold;
+">S</div>
+
+<span>Seller</span>
+
+</div>
+
+</header>
+
+<!-- CONTENT -->
+<div style="padding:30px;">
+
+<div id="dashboard">
+
+<div style="
+text-align:center;
+padding:40px;
+background:rgba(255,255,255,.05);
+border-radius:12px;
+margin-bottom:30px;
+">
+
+<h3>Selamat Datang Seller! 🎉</h3>
+<p>Mulai jual produk Anda</p>
+
+</div>
+
+</div>
+
+</div>
+
+</main>
+
+</div>
+
+<!-- MOBILE NAV -->
+<nav id="mobileNav" style="
+display:none;
+position:fixed;
+bottom:0;
+left:0;
+right:0;
+height:60px;
+background:#FFC107;
+justify-content:space-around;
+align-items:center;
+">
+
+<a href="#" style="color:#000;font-size:20px;">📊</a>
+<a href="#" style="color:#000;font-size:20px;">📦</a>
+<a href="#" style="color:#000;font-size:20px;">➕</a>
+<a href="#" style="color:#000;font-size:20px;">📋</a>
+
+</nav>
 
 <script>
-// Dashboard functionality
-document.addEventListener('DOMContentLoaded', function() {
-  
-  // Section switching
-  function showSection(sectionId) {
-    // Hide all sections
-    document.querySelectorAll('.content-section').forEach(section => {
-      section.classList.remove('active');
-    });
-    
-    // Show selected section
-    document.getElementById(sectionId).classList.add('active');
-    
-    // Update page title
-    document.getElementById('pageTitle').textContent = titles[sectionId] || 'Dashboard';
-    
-    // Update sidebar active state
-    document.querySelectorAll('.sidebar-nav a').forEach(function(link) {
-      link.classList.remove('active');
-      if (link.getAttribute('data-section') === sectionId) {
-        link.classList.add('active');
-      }
-    });
-    
-    // Update mobile nav active state
-    document.querySelectorAll('.mobile-nav-item').forEach(function(item) {
-      item.classList.remove('active');
-      if (item.getAttribute('data-section') === sectionId) {
-        item.classList.add('active');
-      }
-    });
-  }
+if(window.innerWidth<=768){
+document.getElementById('mobileNav').style.display='flex';
+}
 
-  /* ── Sidebar navigation ── */
-  document.querySelectorAll('.sidebar-nav a').forEach(function(link) {
-    link.addEventListener('click', function(e) {
-      e.preventDefault();
-      var sectionId = this.getAttribute('data-section');
-      showSection(sectionId);
-    });
-  });
+const sidebar=document.getElementById('sidebar');
 
-  /* ── Mobile navigation ── */
-  document.querySelectorAll('.mobile-nav-item').forEach(function(item) {
-    item.addEventListener('click', function() {
-      var sectionId = this.getAttribute('data-section');
-      showSection(sectionId);
-    });
-  });
+document.getElementById('sidebarToggle')?.addEventListener('click',()=>{
+sidebar.style.transform='translateX(0)';
+});
 
-  /* ── Mobile sidebar toggle ── */
-  var sidebarToggle = document.getElementById('sidebarToggle');
-  var sidebar = document.getElementById('sidebar');
-  var sidebarOverlay = document.getElementById('sidebarOverlay');
-  var sidebarClose = document.getElementById('sidebarClose');
-
-  console.log('Seller sidebar elements:', {
-    toggle: sidebarToggle,
-    sidebar: sidebar,
-    overlay: sidebarOverlay,
-    close: sidebarClose
-  });
-
-  if (sidebarToggle) {
-    sidebarToggle.addEventListener('click', function() {
-      console.log('Seller sidebar toggle clicked!');
-      sidebar.classList.add('active');
-      sidebarOverlay.classList.add('active');
-    });
-  } else {
-    console.log('Seller sidebar toggle not found!');
-  }
-
-  if (sidebarOverlay) {
-    sidebarOverlay.addEventListener('click', function() {
-      console.log('Seller sidebar overlay clicked!');
-      sidebar.classList.remove('active');
-      sidebarOverlay.classList.remove('active');
-    });
-  }
-
-  if (sidebarClose) {
-    sidebarClose.addEventListener('click', function() {
-      console.log('Seller sidebar close clicked!');
-      sidebar.classList.remove('active');
-      sidebarOverlay.classList.remove('active');
-    });
-  }
-
-  /* ── Welcome button click ── */
-  document.querySelector('.welcome-empty .btn').addEventListener('click', function(e) {
-    e.preventDefault();
-    showSection('add-product');
-  });
-
-  /* ── Form submissions ── */
-  const productForm = document.getElementById('productForm');
-  if (productForm) {
-    productForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-      alert('Fitur tambah produk akan tersedia setelah terhubung dengan database');
-      productForm.reset();
-      showSection('products');
-    });
-  }
-  
-  const profileForm = document.getElementById('profileForm');
-  if (profileForm) {
-    profileForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-      alert('Fitur simpan profil akan tersedia setelah terhubung dengan database');
-    });
-  }
-
-  /* ── Helper functions ── */
-  window.resetProductForm = function() {
-    productForm.reset();
-  };
-  
-  window.showSection = showSection;
-
-  /* ── Smart Exit Logic for Dashboard ── */
-  const sellerLogoutBtn = document.getElementById('sellerLogoutBtn');
-  if (sellerLogoutBtn) {
-    sellerLogoutBtn.addEventListener('click', function(e) {
-      e.preventDefault();
-      if (confirm('Apakah Anda yakin ingin keluar dari dashboard AsaHub?')) {
-        // Try to close window directly first
-        if (window.history.length > 1) {
-          // If there's history, go back to previous page
-          window.history.back();
-        } else {
-          // If no history, try to close the window
-          window.close();
-          
-          // Only redirect to about:blank if window.close() fails and no history
-          setTimeout(() => {
-            if (!window.closed) {
-              window.location.href = 'about:blank';
-            }
-          }, 100);
-        }
-      }
-    });
-  }
-
-  /* ── Initialize seller dashboard ── */
-  if (window.sellerManager) {
-    window.sellerManager.init();
-  }
-})();
+document.getElementById('sidebarClose')?.addEventListener('click',()=>{
+if(window.innerWidth<=768){
+sidebar.style.transform='translateX(-100%)';
+}
+});
 </script>
 
 </body>
 </html>
-

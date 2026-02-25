@@ -9,276 +9,278 @@
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-
-:root{
---brand:#FFC107;
---bg:#0a0a0a;
---bg2:#111;
---text:#fff;
---nav-h:64px;
-}
-
-body{
-font-family:'DM Sans',sans-serif;
-background:linear-gradient(135deg,#000,#1a1a1a);
-color:#fff;
-padding-top:var(--nav-h);
-}
-
-/* ===== NAVBAR (SAMA LOGIN) ===== */
-
-.navbar{
-position:fixed;
-top:0;left:0;right:0;
-height:var(--nav-h);
-background:var(--brand);
-display:flex;
-align-items:center;
-z-index:1000;
-box-shadow:0 2px 20px rgba(0,0,0,.3);
-}
-
-.nav-container{
-width:100%;
-max-width:1280px;
-margin:auto;
-padding:0 24px;
-display:flex;
-align-items:center;
-gap:24px;
-}
-
-.nav-logo{
-font-family:'Syne',sans-serif;
-font-size:1.5rem;
-font-weight:800;
-color:#fff;
-text-decoration:none;
-}
-.nav-logo span{color:#000}
-
-.nav-links{
-display:flex;
-gap:4px;
-flex:1;
-}
-.nav-links a{
-text-decoration:none;
-color:#fff;
-font-weight:500;
-font-size:.95rem;
-padding:8px 14px;
-border-radius:8px;
-transition:.2s;
-}
-.nav-links a:hover,
-.nav-links a.active{
-background:rgba(0,0,0,.15);
-}
-
-.nav-auth{
-display:flex;
-align-items:center;
-gap:10px;
-}
-
-.btn-outline{
-padding:8px 20px;
-border:2px solid #fff;
-border-radius:8px;
-color:#fff;
-text-decoration:none;
-font-weight:600;
-font-size:.9rem;
-}
-
-.btn-primary{
-padding:8px 20px;
-border:2px solid #000;
-border-radius:8px;
-background:#000;
-color:#fff;
-text-decoration:none;
-font-weight:600;
-font-size:.9rem;
-}
-
-.mobile-menu-toggle{
-display:none;
-background:none;
-border:none;
-font-size:1.3rem;
-color:#fff;
-cursor:pointer;
-margin-left:auto;
-}
-
-/* ===== HERO ===== */
-
-.hero{
-text-align:center;
-padding:100px 20px 60px;
-}
-
-.hero h1{
-font-family:'Syne';
-font-size:2.8rem;
-margin-bottom:16px;
-}
-
-.hero p{
-opacity:.8;
-margin-bottom:28px;
-}
-
-.hero a{
-background:var(--brand);
-color:#000;
-padding:14px 28px;
-border-radius:10px;
-font-weight:700;
-text-decoration:none;
-}
-
-/* ===== COURSE GRID ===== */
-
-.courses-grid{
-max-width:1200px;
-margin:auto;
-padding:40px 20px 120px;
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:24px;
-}
-
-.course-card{
-background:#111;
-border-radius:18px;
-padding:20px;
-border:1px solid rgba(255,255,255,.05);
-transition:.3s;
-}
-
-.course-card:hover{
-transform:translateY(-6px);
-border-color:var(--brand);
-}
-
-.course-title{
-font-weight:700;
-margin-bottom:8px;
-}
-
-.course-price{
-margin-top:12px;
-color:var(--brand);
-font-weight:700;
-}
-
-/* ===== MOBILE ===== */
-
-.mobile-bottom-nav{
-display:none;
-position:fixed;
-bottom:0;left:0;right:0;
-height:60px;
-background:var(--brand);
-align-items:center;
-justify-content:space-around;
-z-index:1000;
-}
-
-.mobile-bottom-nav a{
-flex:1;
-display:flex;
-justify-content:center;
-align-items:center;
-color:rgba(0,0,0,.5);
-font-size:1.2rem;
-text-decoration:none;
-height:100%;
-}
-
-.mobile-bottom-nav a.active{color:#000}
-
-@media(max-width:768px){
-.nav-links,.nav-auth{display:none}
-.mobile-menu-toggle{display:flex}
-.mobile-bottom-nav{display:flex}
-body{padding-bottom:60px}
-.navbar{height:56px}
-}
-</style>
 </head>
 
-<body>
+<body style="margin:0;padding-top:64px;font-family:'DM Sans',sans-serif;background:linear-gradient(135deg,#000,#1a1a1a);color:#fff;overflow-x:hidden;">
 
 <!-- NAVBAR -->
-<nav class="navbar">
-<div class="nav-container">
-<a href="index.html" class="nav-logo">Asa<span>Hub</span></a>
+<nav style="position:fixed;top:0;left:0;right:0;height:64px;background:#FFC107;display:flex;align-items:center;z-index:1000;box-shadow:0 2px 20px rgba(0,0,0,.3);">
 
-<div class="nav-links">
-<a href="index.html">Marketplace</a>
-<a href="jasa.html">Jasa</a>
-<a href="edukasi.html" class="active">Edukasi</a>
-<a href="komunitas.html">Komunitas</a>
-<a href="tentang.html">Tentang</a>
+<div style="width:100%;max-width:1280px;margin:auto;padding:0 24px;display:flex;align-items:center;gap:24px;">
+
+<a href="index.html" style="font-family:Syne,sans-serif;font-size:1.5rem;font-weight:800;color:#fff;text-decoration:none;white-space:nowrap;">
+Asa<span style="color:#000">Hub</span>
+</a>
+
+<div style="display:flex;gap:4px;flex:1;">
+<a href="index.html" style="color:#fff;text-decoration:none;padding:8px 14px;border-radius:8px;">Marketplace</a>
+<a href="jasa.html" style="color:#fff;text-decoration:none;padding:8px 14px;border-radius:8px;">Jasa</a>
+<a href="edukasi.html" style="color:#fff;text-decoration:none;padding:8px 14px;border-radius:8px;background:rgba(0,0,0,.15);">Edukasi</a>
+<a href="komunitas.html" style="color:#fff;text-decoration:none;padding:8px 14px;border-radius:8px;">Komunitas</a>
+<a href="tentang.html" style="color:#fff;text-decoration:none;padding:8px 14px;border-radius:8px;">Tentang</a>
 </div>
 
-<div class="nav-auth">
-<a href="login.html" class="btn-outline">Masuk</a>
-<a href="daftar.html" class="btn-primary">Daftar</a>
+<div style="display:flex;gap:10px;align-items:center;">
+<a href="login.html" style="padding:8px 20px;border:2px solid #fff;border-radius:8px;color:#fff;text-decoration:none;font-weight:600;">Masuk</a>
+<a href="daftar.html" style="padding:8px 20px;background:#000;border-radius:8px;color:#fff;text-decoration:none;font-weight:600;">Daftar</a>
 </div>
 
-<button class="mobile-menu-toggle">
+<!-- HAMBURGER MENU -->
+<button id="hamburgerToggle" style="display:none;background:none;border:none;color:#fff;font-size:24px;cursor:pointer;padding:8px;">
 <i class="fas fa-bars"></i>
 </button>
 
 </div>
 </nav>
 
+<!-- MOBILE SLIDE MENU -->
+<div id="mobileMenu" style="position:fixed;top:64px;right:-280px;width:260px;height:calc(100vh - 64px);background:#111;z-index:999;transition:right 0.3s ease;box-shadow:-2px 0 10px rgba(0,0,0,0.3);">
+<div style="padding:20px;">
+<div style="display:flex;align-items:center;margin-bottom:20px;padding-bottom:15px;border-bottom:1px solid rgba(255,255,255,0.2);">
+<a href="index.html" style="font-family:Syne,sans-serif;font-size:1.2rem;font-weight:800;color:#fff;text-decoration:none;">
+Asa<span style="color:#FFC107">Hub</span>
+</a>
+<button id="mobileMenuClose" style="margin-left:auto;background:none;border:none;color:#fff;font-size:20px;cursor:pointer;">
+<i class="fas fa-times"></i>
+</button>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:8px;">
+<a href="index.html" style="color:#fff;text-decoration:none;padding:12px 16px;border-radius:8px;display:flex;align-items:center;gap:12px;">
+<i class="fas fa-home"></i> Marketplace
+</a>
+<a href="jasa.html" style="color:#fff;text-decoration:none;padding:12px 16px;border-radius:8px;display:flex;align-items:center;gap:12px;">
+<i class="fas fa-briefcase"></i> Jasa
+</a>
+<a href="edukasi.html" style="color:#fff;text-decoration:none;padding:12px 16px;border-radius:8px;display:flex;align-items:center;gap:12px;background:rgba(255,193,7,0.2);">
+<i class="fas fa-graduation-cap"></i> Edukasi
+</a>
+<a href="komunitas.html" style="color:#fff;text-decoration:none;padding:12px 16px;border-radius:8px;display:flex;align-items:center;gap:12px;">
+<i class="fas fa-users"></i> Komunitas
+</a>
+<a href="tentang.html" style="color:#fff;text-decoration:none;padding:12px 16px;border-radius:8px;display:flex;align-items:center;gap:12px;">
+<i class="fas fa-info-circle"></i> Tentang
+</a>
+</div>
+
+<div style="margin-top:20px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.2);">
+<div style="display:flex;flex-direction:column;gap:10px;">
+<a href="login.html" style="padding:12px 16px;border:2px solid #FFC107;border-radius:8px;color:#FFC107;text-decoration:none;font-weight:600;text-align:center;">
+Masuk
+</a>
+<a href="daftar.html" style="padding:12px 16px;background:#FFC107;border-radius:8px;color:#000;text-decoration:none;font-weight:600;text-align:center;">
+Daftar
+</a>
+</div>
+</div>
+</div>
+</div>
+
+<!-- OVERLAY -->
+<div id="menuOverlay" style="position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);z-index:998;display:none;"></div>
+
 <!-- HERO -->
-<section class="hero">
-<h1>Edukasi & Mentoring</h1>
-<p>Podcast, pelatihan bisnis, dan mentoring dari pelaku usaha nyata</p>
-<a href="daftar.html">Daftar Sebagai Mentor</a>
+<section style="text-align:center;padding:100px 20px 60px;">
+
+<h1 style="font-family:Syne;font-size:2.8rem;margin-bottom:16px;">
+Platform Edukasi Digital
+</h1>
+
+<p style="opacity:.8;margin-bottom:28px;">
+Pelajari skill baru dari mentor profesional dan tingkatkan karirmu
+</p>
+
+<a href="daftar.html" style="background:#FFC107;color:#000;padding:14px 28px;border-radius:10px;font-weight:700;text-decoration:none;display:inline-block;transition:.3s;">
+Daftar Sebagai Mentor
+</a>
+
 </section>
 
-<!-- COURSE GRID -->
-<div class="courses-grid" id="coursesGrid">
+<!-- COURSES GRID -->
+<section style="max-width:1200px;margin:auto;padding:40px 20px 100px;">
 
-<div class="course-card">
-<div class="course-title">Fundamental Bisnis Digital</div>
-<div>Pemula • Video</div>
-<div class="course-price">Rp 199.000</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;">
+
+<div style="background:#111;border-radius:18px;padding:24px;border:1px solid rgba(255,255,255,.05);transition:.3s;">
+<h3 style="margin-bottom:12px;">Digital Marketing</h3>
+<p>Strategi pemasaran digital untuk bisnis</p>
+<div style="margin-top:16px;font-weight:700;color:#FFC107;">Rp 750.000</div>
 </div>
 
-<div class="course-card">
-<div class="course-title">Strategi Marketing 2026</div>
-<div>Menengah • Workshop</div>
-<div class="course-price">Rp 499.000</div>
+<div style="background:#111;border-radius:18px;padding:24px;border:1px solid rgba(255,255,255,.05);">
+<h3 style="margin-bottom:12px;">Web Development</h3>
+<p>Pembuatan website modern & responsive</p>
+<div style="margin-top:16px;font-weight:700;color:#FFC107;">Rp 1.200.000</div>
 </div>
 
-<div class="course-card">
-<div class="course-title">Fullstack Web Bootcamp</div>
-<div>Lanjutan • Mentoring</div>
-<div class="course-price">Rp 1.200.000</div>
+<div style="background:#111;border-radius:18px;padding:24px;border:1px solid rgba(255,255,255,.05);">
+<h3 style="margin-bottom:12px;">Business Strategy</h3>
+<p>Perencanaan bisnis yang efektif</p>
+<div style="margin-top:16px;font-weight:700;color:#FFC107;">Rp 900.000</div>
+</div>
+
+<div style="background:#111;border-radius:18px;padding:24px;border:1px solid rgba(255,255,255,.05);">
+<h3 style="margin-bottom:12px;">Content Creation</h3>
+<p>Membuat konten yang menarik & viral</p>
+<div style="margin-top:16px;font-weight:700;color:#FFC107;">Rp 600.000</div>
 </div>
 
 </div>
+</section>
 
 <!-- MOBILE NAV -->
-<nav class="mobile-bottom-nav">
-<a href="index.html"><i class="fas fa-home"></i></a>
-<a href="jasa.html"><i class="fas fa-briefcase"></i></a>
-<a href="edukasi.html" class="active"><i class="fas fa-graduation-cap"></i></a>
-<a href="komunitas.html"><i class="fas fa-users"></i></a>
-<a href="tentang.html"><i class="fas fa-info-circle"></i></a>
-<a href="login.html"><i class="fas fa-user"></i></a>
+<nav style="display:none;position:fixed;bottom:0;left:0;right:0;height:60px;background:#FFC107;align-items:center;justify-content:space-around;box-shadow:0 -4px 20px rgba(0,0,0,.3);z-index:1000;"
+class="mobile-nav">
+
+<a href="index.html" style="flex:1;display:flex;justify-content:center;align-items-center;color:rgba(0,0,0,.5);font-size:1.2rem;text-decoration:none;">
+<i class="fas fa-home"></i>
+</a>
+
+<a href="jasa.html" style="flex:1;display:flex;justify-content:center;align-items-center;color:rgba(0,0,0,.5);font-size:1.2rem;text-decoration:none;">
+<i class="fas fa-briefcase"></i>
+</a>
+
+<a href="edukasi.html" style="flex:1;display:flex;justify-content:center;align-items-center;color:#000;font-size:1.2rem;text-decoration:none;">
+<i class="fas fa-graduation-cap"></i>
+</a>
+
+<a href="komunitas.html" style="flex:1;display:flex;justify-content:center;align-items-center;color:rgba(0,0,0,.5);font-size:1.2rem;text-decoration:none;">
+<i class="fas fa-users"></i>
+</a>
+
+<a href="tentang.html" style="flex:1;display:flex;justify-content:center;align-items-center;color:rgba(0,0,0,.5);font-size:1.2rem;text-decoration:none;">
+<i class="fas fa-info-circle"></i>
+</a>
+
+<a href="daftar.html" style="flex:1;display:flex;justify-content:center;align-items-center;color:rgba(0,0,0,.5);font-size:1.2rem;text-decoration:none;">
+<i class="fas fa-user"></i>
+</a>
+
 </nav>
+
+<script>
+// Mobile Navigation
+const hamburgerToggle = document.getElementById('hamburgerToggle');
+const mobileMenu = document.getElementById('mobileMenu');
+const mobileMenuClose = document.getElementById('mobileMenuClose');
+const menuOverlay = document.getElementById('menuOverlay');
+const mobileNav = document.querySelector('.mobile-nav');
+
+function toggleMobileMenu(show) {
+    if (show) {
+        mobileMenu.style.right = '0';
+        menuOverlay.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+    } else {
+        mobileMenu.style.right = '-280px';
+        menuOverlay.style.display = 'none';
+        document.body.style.overflow = '';
+    }
+}
+
+hamburgerToggle?.addEventListener('click', () => toggleMobileMenu(true));
+mobileMenuClose?.addEventListener('click', () => toggleMobileMenu(false));
+menuOverlay?.addEventListener('click', () => toggleMobileMenu(false));
+
+// Close menu when clicking on links
+mobileMenu?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => toggleMobileMenu(false));
+});
+
+// Responsive behavior
+function handleResize() {
+    if (window.innerWidth <= 768) {
+        hamburgerToggle.style.display = 'block';
+        mobileNav.style.display = 'flex';
+        
+        // Hide desktop menu items
+        document.querySelector('nav > div > div:nth-child(2)').style.display = 'none';
+        document.querySelector('nav > div > div:nth-child(3)').style.display = 'none';
+    } else {
+        hamburgerToggle.style.display = 'none';
+        mobileNav.style.display = 'none';
+        toggleMobileMenu(false);
+        
+        // Show desktop menu items
+        document.querySelector('nav > div > div:nth-child(2)').style.display = 'flex';
+        document.querySelector('nav > div > div:nth-child(3)').style.display = 'flex';
+    }
+}
+
+// Initial check and event listener
+handleResize();
+window.addEventListener('resize', handleResize);
+</script>
+
+</body>
+</html>
+<div style="background:#111;border-radius:18px;padding:20px;border:1px solid rgba(255,255,255,.05);transition:.3s;">
+<div style="font-weight:700;margin-bottom:8px;">Fundamental Bisnis Digital</div>
+<div style="opacity:.8;">Pemula • Video</div>
+<div style="margin-top:12px;color:#FFC107;font-weight:700;">Rp 199.000</div>
+</div>
+
+<!-- CARD 2 -->
+<div style="background:#111;border-radius:18px;padding:20px;border:1px solid rgba(255,255,255,.05);">
+<div style="font-weight:700;margin-bottom:8px;">Strategi Marketing 2026</div>
+<div style="opacity:.8;">Menengah • Workshop</div>
+<div style="margin-top:12px;color:#FFC107;font-weight:700;">Rp 499.000</div>
+</div>
+
+<!-- CARD 3 -->
+<div style="background:#111;border-radius:18px;padding:20px;border:1px solid rgba(255,255,255,.05);">
+<div style="font-weight:700;margin-bottom:8px;">Fullstack Web Bootcamp</div>
+<div style="opacity:.8;">Lanjutan • Mentoring</div>
+<div style="margin-top:12px;color:#FFC107;font-weight:700;">Rp 1.200.000</div>
+</div>
+
+</section>
+
+<!-- MOBILE NAV -->
+<nav style="display:none;position:fixed;bottom:0;left:0;right:0;height:60px;background:#FFC107;align-items:center;justify-content:space-around;box-shadow:0 -4px 20px rgba(0,0,0,.3);z-index:1000;"
+class="mobile-nav">
+
+<a href="index.html" style="flex:1;display:flex;justify-content:center;align-items:center;color:rgba(0,0,0,.5);font-size:1.2rem;text-decoration:none;">
+<i class="fas fa-home"></i>
+</a>
+
+<a href="jasa.html" style="flex:1;display:flex;justify-content:center;align-items:center;color:rgba(0,0,0,.5);font-size:1.2rem;text-decoration:none;">
+<i class="fas fa-briefcase"></i>
+</a>
+
+<a href="edukasi.html" style="flex:1;display:flex;justify-content:center;align-items:center;color:#000;font-size:1.2rem;text-decoration:none;">
+<i class="fas fa-graduation-cap"></i>
+</a>
+
+<a href="komunitas.html" style="flex:1;display:flex;justify-content:center;align-items:center;color:rgba(0,0,0,.5);font-size:1.2rem;text-decoration:none;">
+<i class="fas fa-users"></i>
+</a>
+
+<a href="tentang.html" style="flex:1;display:flex;justify-content:center;align-items:center;color:rgba(0,0,0,.5);font-size:1.2rem;text-decoration:none;">
+<i class="fas fa-info-circle"></i>
+</a>
+
+<a href="login.html" style="flex:1;display:flex;justify-content:center;align-items:center;color:rgba(0,0,0,.5);font-size:1.2rem;text-decoration:none;">
+<i class="fas fa-user"></i>
+</a>
+
+</nav>
+
+<script>
+if(window.innerWidth<=768){
+document.querySelector('.mobile-nav').style.display='flex';
+}
+</script>
 
 </body>
 </html>
