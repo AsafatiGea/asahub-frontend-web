@@ -276,7 +276,7 @@ h1, h2, h3, h4, h5, h6 {
     bottom: 0;
     left: 0;
     right: 0;
-    height: 60px;
+    height: 65px;
     background: #FFC107;
     align-items: center;
     justify-content: space-around;
@@ -287,10 +287,11 @@ h1, h2, h3, h4, h5, h6 {
 .mobile-nav a {
     flex: 1;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     color: rgba(0,0,0,0.5);
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     text-decoration: none;
     transition: color 0.3s ease;
 }
@@ -445,6 +446,14 @@ h1, h2, h3, h4, h5, h6 {
         padding: 20px;
     }
 }
+
+/* Hide desktop navigation on mobile */
+@media (max-width: 768px) {
+    .navbar-links {
+        display: none !important;
+    }
+
+}
 </style>
 
 </head>
@@ -513,11 +522,6 @@ h1, h2, h3, h4, h5, h6 {
 <nav class="navbar">
 
 <div class="navbar-container">
-
-<!-- HAMBURGER MENU POJOK KIRI ATAS -->
-<button id="hamburgerToggle" class="hamburger-toggle">
-<i class="fas fa-bars"></i>
-</button>
 
 <a href="index.html" class="navbar-logo">
 Asa<span>Hub</span>
@@ -636,35 +640,37 @@ Daftar
 
 
 
+<!-- MOBILE NAV -->
+<nav style="display:none;position:fixed;bottom:0;left:0;right:0;height:65px;background:#FFC107;align-items:center;justify-content:space-around;box-shadow:0 -4px 20px rgba(0,0,0,.3);z-index:1000;"
+class="mobile-nav">
+
+<a href="index.html" style="flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;color:#000;font-size:1.3rem;text-decoration:none;">
+<i class="fas fa-home"></i>
+</a>
+
+<a href="jasa.html" style="flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;color:rgba(0,0,0,.5);font-size:1.3rem;text-decoration:none;">
+<i class="fas fa-briefcase"></i>
+</a>
+
+<a href="edukasi.html" style="flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;color:rgba(0,0,0,.5);font-size:1.3rem;text-decoration:none;">
+<i class="fas fa-graduation-cap"></i>
+</a>
+
+<a href="komunitas.html" style="flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;color:rgba(0,0,0,.5);font-size:1.3rem;text-decoration:none;">
+<i class="fas fa-users"></i>
+</a>
+
+<a href="tentang.html" style="flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;color:rgba(0,0,0,.5);font-size:1.3rem;text-decoration:none;">
+<i class="fas fa-info-circle"></i>
+</a>
+
+<a href="login.html" style="flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;color:rgba(0,0,0,.5);font-size:1.3rem;text-decoration:none;">
+<i class="fas fa-user"></i>
+</a>
+
+</nav>
+
 <script>
-// Mobile Navigation - OLD SYSTEM
-const hamburgerToggle = document.getElementById('hamburgerToggle');
-const mobileMenu = document.getElementById('mobileMenu');
-const mobileMenuClose = document.getElementById('mobileMenuClose');
-const menuOverlay = document.getElementById('menuOverlay');
-const mobileNav = document.querySelector('.mobile-nav');
-
-function toggleMobileMenu(show) {
-    if (show) {
-        mobileMenu.style.right = '0';
-        menuOverlay.style.display = 'block';
-        document.body.style.overflow = 'hidden';
-    } else {
-        mobileMenu.style.right = '-280px';
-        menuOverlay.style.display = 'none';
-        document.body.style.overflow = '';
-    }
-}
-
-hamburgerToggle?.addEventListener('click', () => toggleMobileMenu(true));
-mobileMenuClose?.addEventListener('click', () => toggleMobileMenu(false));
-menuOverlay?.addEventListener('click', () => toggleMobileMenu(false));
-
-// Close menu when clicking on links
-mobileMenu?.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => toggleMobileMenu(false));
-});
-
 // NEW HAMBURGER MENU SYSTEM - POJOK KANAN ATAS
 const mobileHamburger = document.getElementById('mobileHamburger');
 const mobileNavMenu = document.getElementById('mobileNavMenu');
@@ -685,7 +691,10 @@ function toggleMobileNavMenu(show) {
     }
 }
 
-mobileHamburger?.addEventListener('click', () => toggleMobileNavMenu(true));
+mobileHamburger?.addEventListener('click', () => {
+    const isActive = mobileNavMenu.classList.contains('active');
+    toggleMobileNavMenu(!isActive);
+});
 mobileNavClose?.addEventListener('click', () => toggleMobileNavMenu(false));
 mobileNavOverlay?.addEventListener('click', () => toggleMobileNavMenu(false));
 
@@ -697,20 +706,16 @@ mobileNavMenu?.querySelectorAll('a').forEach(link => {
 // Responsive behavior
 function handleResize() {
     if (window.innerWidth <= 768) {
-        hamburgerToggle.style.display = 'block';
         mobileNav.style.display = 'flex';
         
         // Hide desktop menu items
-        document.querySelector('nav > div > div:nth-child(2)').style.display = 'none';
-        document.querySelector('nav > div > div:nth-child(3)').style.display = 'none';
+        document.querySelector('.navbar-links').style.display = 'none';
     } else {
-        hamburgerToggle.style.display = 'none';
         mobileNav.style.display = 'none';
-        toggleMobileMenu(false);
         
         // Show desktop menu items
-        document.querySelector('nav > div > div:nth-child(2)').style.display = 'flex';
-        document.querySelector('nav > div > div:nth-child(3)').style.display = 'flex';
+        document.querySelector('.navbar-links').style.display = 'flex';
+        document.querySelector('.navbar-actions').style.display = 'flex';
     }
 }
 

@@ -100,11 +100,6 @@ Asa<span style="color:#000">Hub</span>
 <a href="daftar.html" style="padding:8px 20px;background:#000;border-radius:8px;color:#fff;text-decoration:none;font-weight:600;">Daftar</a>
 </div>
 
-<!-- HAMBURGER MENU -->
-<button id="hamburgerToggle" style="display:none;background:none;border:none;color:#fff;font-size:24px;cursor:pointer;padding:8px;">
-<i class="fas fa-bars"></i>
-</button>
-
 </div>
 </nav>
 
@@ -257,7 +252,6 @@ class="mobile-nav">
 
 <script>
 // Mobile Navigation
-const hamburgerToggle = document.getElementById('hamburgerToggle');
 const mobileMenu = document.getElementById('mobileMenu');
 const mobileMenuClose = document.getElementById('mobileMenuClose');
 const menuOverlay = document.getElementById('menuOverlay');
@@ -275,7 +269,6 @@ function toggleMobileMenu(show) {
     }
 }
 
-hamburgerToggle?.addEventListener('click', () => toggleMobileMenu(true));
 mobileMenuClose?.addEventListener('click', () => toggleMobileMenu(false));
 menuOverlay?.addEventListener('click', () => toggleMobileMenu(false));
 
@@ -304,7 +297,10 @@ function toggleMobileNavMenu(show) {
     }
 }
 
-mobileHamburger?.addEventListener('click', () => toggleMobileNavMenu(true));
+mobileHamburger?.addEventListener('click', () => {
+    const isActive = mobileNavMenu.classList.contains('active');
+    toggleMobileNavMenu(!isActive);
+});
 mobileNavClose?.addEventListener('click', () => toggleMobileNavMenu(false));
 mobileNavOverlay?.addEventListener('click', () => toggleMobileNavMenu(false));
 
@@ -316,14 +312,12 @@ mobileNavMenu?.querySelectorAll('a').forEach(link => {
 // Responsive behavior
 function handleResize() {
     if (window.innerWidth <= 768) {
-        hamburgerToggle.style.display = 'block';
         mobileNav.style.display = 'flex';
         
         // Hide desktop menu items
         document.querySelector('nav > div > div:nth-child(2)').style.display = 'none';
         document.querySelector('nav > div > div:nth-child(3)').style.display = 'none';
     } else {
-        hamburgerToggle.style.display = 'none';
         mobileNav.style.display = 'none';
         toggleMobileMenu(false);
         

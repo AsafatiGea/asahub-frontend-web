@@ -216,7 +216,10 @@ function toggleMobileNavMenu(show) {
     }
 }
 
-mobileHamburger?.addEventListener('click', () => toggleMobileNavMenu(true));
+mobileHamburger?.addEventListener('click', () => {
+    const isActive = mobileNavMenu.classList.contains('active');
+    toggleMobileNavMenu(!isActive);
+});
 mobileNavClose?.addEventListener('click', () => toggleMobileNavMenu(false));
 mobileNavOverlay?.addEventListener('click', () => toggleMobileNavMenu(false));
 
