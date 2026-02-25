@@ -16,6 +16,18 @@
 <link rel="stylesheet" href="css/responsive-desktop.css">
 <link rel="stylesheet" href="css/mobile-navigation.css">
 
+<style>
+/* Hide desktop navigation on mobile */
+@media (max-width: 768px) {
+    nav > div > div:nth-child(2) {
+        display: none !important;
+    }
+    nav > div > div:nth-child(3) {
+        display: none !important;
+    }
+}
+</style>
+
 </head>
 
 <body style="margin:0;padding-top:64px;font-family:'DM Sans',sans-serif;background:linear-gradient(135deg,#000,#1a1a1a);color:#fff;overflow-x:hidden;">
@@ -99,11 +111,6 @@ Asa<span style="color:#000">Hub</span>
 <a href="login.html" style="padding:8px 20px;border:2px solid #fff;border-radius:8px;color:#fff;text-decoration:none;font-weight:600;">Masuk</a>
 <a href="daftar.html" style="padding:8px 20px;background:#000;border-radius:8px;color:#fff;text-decoration:none;font-weight:600;">Daftar</a>
 </div>
-
-<!-- HAMBURGER MENU -->
-<button id="hamburgerToggle" style="display:none;background:none;border:none;color:#fff;font-size:24px;cursor:pointer;padding:8px;">
-<i class="fas fa-bars"></i>
-</button>
 
 </div>
 </nav>
@@ -234,33 +241,12 @@ class="mobile-nav">
 </nav>
 
 <script>
-// Mobile Navigation
-const hamburgerToggle = document.getElementById('hamburgerToggle');
-const mobileMenu = document.getElementById('mobileMenu');
-const mobileMenuClose = document.getElementById('mobileMenuClose');
-const menuOverlay = document.getElementById('menuOverlay');
-const mobileNav = document.querySelector('.mobile-nav');
-
-function toggleMobileMenu(show) {
-    if (show) {
-        mobileMenu.style.right = '0';
-        menuOverlay.style.display = 'block';
-        document.body.style.overflow = 'hidden';
-    } else {
-        mobileMenu.style.right = '-280px';
-        menuOverlay.style.display = 'none';
-        document.body.style.overflow = '';
-    }
+function openGuide(){
+document.getElementById('guideModal').style.display='flex';
 }
-
-hamburgerToggle?.addEventListener('click', () => toggleMobileMenu(true));
-mobileMenuClose?.addEventListener('click', () => toggleMobileMenu(false));
-menuOverlay?.addEventListener('click', () => toggleMobileMenu(false));
-
-// Close menu when clicking on links
-mobileMenu?.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => toggleMobileMenu(false));
-});
+function closeGuide(){
+document.getElementById('guideModal').style.display='none';
+}
 
 // NEW HAMBURGER MENU SYSTEM - POJOK KANAN ATAS
 const mobileHamburger = document.getElementById('mobileHamburger');
@@ -291,29 +277,10 @@ mobileNavMenu?.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => toggleMobileNavMenu(false));
 });
 
-// Responsive behavior
-function handleResize() {
-    if (window.innerWidth <= 768) {
-        hamburgerToggle.style.display = 'block';
-        mobileNav.style.display = 'flex';
-        
-        // Hide desktop menu items
-        document.querySelector('nav > div > div:nth-child(2)').style.display = 'none';
-        document.querySelector('nav > div > div:nth-child(3)').style.display = 'none';
-    } else {
-        hamburgerToggle.style.display = 'none';
-        mobileNav.style.display = 'none';
-        toggleMobileMenu(false);
-        
-        // Show desktop menu items
-        document.querySelector('nav > div > div:nth-child(2)').style.display = 'flex';
-        document.querySelector('nav > div > div:nth-child(3)').style.display = 'flex';
-    }
+// Show mobile nav on small screens
+if(window.innerWidth<=768){
+document.querySelector('.mobile-bottom-nav').style.display='flex';
 }
-
-// Initial check and event listener
-handleResize();
-window.addEventListener('resize', handleResize);
 </script>
 
 </body>
@@ -390,15 +357,6 @@ class="mobile-bottom-nav">
 <a href="login.html" style="flex:1;display:flex;justify-content:center;align-items:center;color:rgba(0,0,0,.5);font-size:1.2rem;text-decoration:none;"><i class="fas fa-user"></i></a>
 
 </nav>
-
-<script>
-function openGuide(){
-document.getElementById('guideModal').style.display='flex';
-}
-function closeGuide(){
-document.getElementById('guideModal').style.display='none';
-}
-</script>
 
 </body>
 </html>

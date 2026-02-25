@@ -16,9 +16,79 @@
 <link rel="stylesheet" href="css/responsive-desktop.css">
 <link rel="stylesheet" href="css/mobile-navigation.css">
 
+<style>
+/* Hide desktop navigation on mobile */
+@media (max-width: 768px) {
+    nav > div > div:nth-child(2) {
+        display: none !important;
+    }
+    nav > div > div:nth-child(3) {
+        display: none !important;
+    }
+}
+</style>
+
 </head>
 
 <body style="margin:0;padding-top:64px;font-family:'DM Sans',sans-serif;background:linear-gradient(135deg,#000,#1a1a1a);color:#fff;overflow-x:hidden;">
+
+<!-- HAMBURGER BUTTON - POJOK KANAN ATAS (HANYA MOBILE) -->
+<button class="mobile-hamburger" id="mobileHamburger" aria-label="Toggle menu">
+    <div class="hamburger-icon">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</button>
+
+<!-- MOBILE NAVIGATION OVERLAY -->
+<div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+
+<!-- MOBILE NAVIGATION MENU -->
+<div class="mobile-nav-menu" id="mobileNavMenu">
+    <div class="mobile-nav-header">
+        <div class="mobile-nav-logo">
+            <span>🛒</span> AsaHub
+        </div>
+        <button class="mobile-nav-close" id="mobileNavClose" aria-label="Close menu">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+    
+    <div class="mobile-nav-content">
+        <div class="mobile-nav-links">
+            <a href="index.html">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="jasa.html">
+                <i class="fas fa-briefcase"></i>
+                <span>Jasa</span>
+            </a>
+            <a href="edukasi.html">
+                <i class="fas fa-graduation-cap"></i>
+                <span>Edukasi</span>
+            </a>
+            <a href="komunitas.html">
+                <i class="fas fa-users"></i>
+                <span>Komunitas</span>
+            </a>
+            <a href="tentang.html">
+                <i class="fas fa-info-circle"></i>
+                <span>Tentang</span>
+            </a>
+        </div>
+        
+        <div class="mobile-nav-actions">
+            <a href="login.html" class="btn btn-outline">
+                <i class="fas fa-sign-in-alt"></i> Masuk
+            </a>
+            <a href="daftar.html" class="btn btn-solid">
+                <i class="fas fa-user-plus"></i> Daftar
+            </a>
+        </div>
+    </div>
+</div>
 
 <!-- NAVBAR -->
 <nav style="position:fixed;top:0;left:0;right:0;height:64px;background:#FFC107;display:flex;align-items:center;z-index:1000;box-shadow:0 2px 20px rgba(0,0,0,.3);">
@@ -41,11 +111,6 @@ Asa<span style="color:#000">Hub</span>
 <a href="login.html" style="padding:8px 20px;border:2px solid #fff;border-radius:8px;color:#fff;text-decoration:none;font-weight:600;">Masuk</a>
 <a href="daftar.html" style="padding:8px 20px;background:#000;border-radius:8px;color:#fff;text-decoration:none;font-weight:600;">Daftar</a>
 </div>
-
-<!-- HAMBURGER MENU -->
-<button id="hamburgerToggle" style="display:none;background:none;border:none;color:#fff;font-size:24px;cursor:pointer;padding:8px;">
-<i class="fas fa-bars"></i>
-</button>
 
 </div>
 </nav>
@@ -176,57 +241,39 @@ class="mobile-nav">
 </nav>
 
 <script>
-// Mobile Navigation
-const hamburgerToggle = document.getElementById('hamburgerToggle');
-const mobileMenu = document.getElementById('mobileMenu');
-const mobileMenuClose = document.getElementById('mobileMenuClose');
-const menuOverlay = document.getElementById('menuOverlay');
-const mobileNav = document.querySelector('.mobile-nav');
+// NEW HAMBURGER MENU SYSTEM - POJOK KANAN ATAS
+const mobileHamburger = document.getElementById('mobileHamburger');
+const mobileNavMenu = document.getElementById('mobileNavMenu');
+const mobileNavOverlay = document.getElementById('mobileNavOverlay');
+const mobileNavClose = document.getElementById('mobileNavClose');
 
-function toggleMobileMenu(show) {
+function toggleMobileNavMenu(show) {
     if (show) {
-        mobileMenu.style.right = '0';
-        menuOverlay.style.display = 'block';
+        mobileNavMenu.classList.add('active');
+        mobileNavOverlay.classList.add('active');
+        mobileHamburger.classList.add('active');
         document.body.style.overflow = 'hidden';
     } else {
-        mobileMenu.style.right = '-280px';
-        menuOverlay.style.display = 'none';
+        mobileNavMenu.classList.remove('active');
+        mobileNavOverlay.classList.remove('active');
+        mobileHamburger.classList.remove('active');
         document.body.style.overflow = '';
     }
 }
 
-hamburgerToggle?.addEventListener('click', () => toggleMobileMenu(true));
-mobileMenuClose?.addEventListener('click', () => toggleMobileMenu(false));
-menuOverlay?.addEventListener('click', () => toggleMobileMenu(false));
+mobileHamburger?.addEventListener('click', () => toggleMobileNavMenu(true));
+mobileNavClose?.addEventListener('click', () => toggleMobileNavMenu(false));
+mobileNavOverlay?.addEventListener('click', () => toggleMobileNavMenu(false));
 
 // Close menu when clicking on links
-mobileMenu?.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => toggleMobileMenu(false));
+mobileNavMenu?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => toggleMobileNavMenu(false));
 });
 
-// Responsive behavior
-function handleResize() {
-    if (window.innerWidth <= 768) {
-        hamburgerToggle.style.display = 'block';
-        mobileNav.style.display = 'flex';
-        
-        // Hide desktop menu items
-        document.querySelector('nav > div > div:nth-child(2)').style.display = 'none';
-        document.querySelector('nav > div > div:nth-child(3)').style.display = 'none';
-    } else {
-        hamburgerToggle.style.display = 'none';
-        mobileNav.style.display = 'none';
-        toggleMobileMenu(false);
-        
-        // Show desktop menu items
-        document.querySelector('nav > div > div:nth-child(2)').style.display = 'flex';
-        document.querySelector('nav > div > div:nth-child(3)').style.display = 'flex';
-    }
+// Show mobile nav on small screens
+if(window.innerWidth<=768){
+document.querySelector('.mobile-nav').style.display='flex';
 }
-
-// Initial check and event listener
-handleResize();
-window.addEventListener('resize', handleResize);
 </script>
 
 </body>
