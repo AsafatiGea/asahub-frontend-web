@@ -30,7 +30,7 @@
 
 </head>
 
-<body style="margin:0;padding-top:64px;font-family:'DM Sans',sans-serif;background:linear-gradient(135deg,#000,#1a1a1a);color:#fff;overflow-x:hidden;">
+<body>
 
 <!-- HAMBURGER BUTTON - POJOK KANAN ATAS (HANYA MOBILE) -->
 <button class="mobile-hamburger" id="mobileHamburger" aria-label="Toggle menu">
@@ -91,150 +91,145 @@
 </div>
 
 <!-- NAVBAR -->
-<nav style="position:fixed;top:0;left:0;right:0;height:64px;background:#FFC107;display:flex;align-items:center;z-index:1000;box-shadow:0 2px 20px rgba(0,0,0,.3);">
+<nav class="main-navbar">
 
-<div style="width:100%;max-width:1280px;margin:auto;padding:0 24px;display:flex;align-items:center;gap:24px;">
+<div class="main-navbar-container">
 
-<a href="index.html" style="font-family:Syne,sans-serif;font-size:1.5rem;font-weight:800;color:#fff;text-decoration:none;white-space:nowrap;">
-Asa<span style="color:#000">Hub</span>
+<a href="index.html" class="main-navbar-logo">
+Asa<span>Hub</span>
 </a>
 
-<div style="display:flex;gap:4px;flex:1;">
-<a href="index.html" style="color:#fff;text-decoration:none;padding:8px 14px;border-radius:8px;">Marketplace</a>
-<a href="jasa.html" style="color:#fff;text-decoration:none;padding:8px 14px;border-radius:8px;">Jasa</a>
-<a href="edukasi.html" style="color:#fff;text-decoration:none;padding:8px 14px;border-radius:8px;">Edukasi</a>
-<a href="komunitas.html" style="color:#fff;text-decoration:none;padding:8px 14px;border-radius:8px;background:rgba(0,0,0,.15);">Komunitas</a>
-<a href="tentang.html" style="color:#fff;text-decoration:none;padding:8px 14px;border-radius:8px;">Tentang</a>
+<div class="nav-links">
+<a href="index.html">Marketplace</a>
+<a href="jasa.html">Jasa</a>
+<a href="edukasi.html">Edukasi</a>
+<a href="komunitas.html" class="active">Komunitas</a>
+<a href="tentang.html">Tentang</a>
 </div>
 
-<div style="display:flex;gap:10px;align-items:center;">
-<a href="login.html" style="padding:8px 20px;border:2px solid #fff;border-radius:8px;color:#fff;text-decoration:none;font-weight:600;">Masuk</a>
-<a href="daftar.html" style="padding:8px 20px;background:#000;border-radius:8px;color:#fff;text-decoration:none;font-weight:600;">Daftar</a>
+<div class="nav-actions">
+<a href="login.html" class="btn-outline">Masuk</a>
+<a href="daftar.html" class="btn-solid">Daftar</a>
 </div>
 
 </div>
 </nav>
 
 <!-- MOBILE SLIDE MENU -->
-<div id="mobileMenu" style="position:fixed;top:64px;right:-280px;width:260px;height:calc(100vh - 64px);background:#111;z-index:999;transition:right 0.3s ease;box-shadow:-2px 0 10px rgba(0,0,0,0.3);">
-<div style="padding:20px;">
-<div style="display:flex;align-items:center;margin-bottom:20px;padding-bottom:15px;border-bottom:1px solid rgba(255,255,255,0.2);">
-<a href="index.html" style="font-family:Syne,sans-serif;font-size:1.2rem;font-weight:800;color:#fff;text-decoration:none;">
-Asa<span style="color:#FFC107">Hub</span>
+<div id="mobileMenu" class="mobile-menu">
+<div class="mobile-menu-header">
+<a href="index.html" class="mobile-menu-logo">
+Asa<span>Hub</span>
 </a>
-<button id="mobileMenuClose" style="margin-left:auto;background:none;border:none;color:#fff;font-size:20px;cursor:pointer;">
+<button id="mobileMenuClose" class="mobile-menu-close">
 <i class="fas fa-times"></i>
 </button>
 </div>
 
-<div style="display:flex;flex-direction:column;gap:8px;">
-<a href="index.html" style="color:#fff;text-decoration:none;padding:12px 16px;border-radius:8px;display:flex;align-items:center;gap:12px;">
+<div class="mobile-menu-links">
+<a href="index.html">
 <i class="fas fa-home"></i> Marketplace
 </a>
-<a href="jasa.html" style="color:#fff;text-decoration:none;padding:12px 16px;border-radius:8px;display:flex;align-items:center;gap:12px;">
+<a href="jasa.html">
 <i class="fas fa-briefcase"></i> Jasa
 </a>
-<a href="edukasi.html" style="color:#fff;text-decoration:none;padding:12px 16px;border-radius:8px;display:flex;align-items:center;gap:12px;">
+<a href="edukasi.html">
 <i class="fas fa-graduation-cap"></i> Edukasi
 </a>
-<a href="komunitas.html" style="color:#fff;text-decoration:none;padding:12px 16px;border-radius:8px;display:flex;align-items:center;gap:12px;background:rgba(255,193,7,0.2);">
+<a href="komunitas.html" class="active">
 <i class="fas fa-users"></i> Komunitas
 </a>
-<a href="tentang.html" style="color:#fff;text-decoration:none;padding:12px 16px;border-radius:8px;display:flex;align-items:center;gap:12px;">
+<a href="tentang.html">
 <i class="fas fa-info-circle"></i> Tentang
 </a>
 </div>
 
-<div style="margin-top:20px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.2);">
-<div style="display:flex;flex-direction:column;gap:10px;">
-<a href="login.html" style="padding:12px 16px;border:2px solid #FFC107;border-radius:8px;color:#FFC107;text-decoration:none;font-weight:600;text-align:center;">
+<div class="mobile-menu-actions">
+<a href="login.html" class="btn-outline">
 Masuk
 </a>
-<a href="daftar.html" style="padding:12px 16px;background:#FFC107;border-radius:8px;color:#000;text-decoration:none;font-weight:600;text-align:center;">
+<a href="daftar.html" class="btn-solid">
 Daftar
 </a>
 </div>
 </div>
-</div>
-</div>
 
 <!-- OVERLAY -->
-<div id="menuOverlay" style="position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);z-index:998;display:none;"></div>
+<div id="menuOverlay"></div>
 
 <!-- HERO -->
-<section style="text-align:center;padding:100px 20px 60px;">
+<section class="hero">
 
-<h1 style="font-family:Syne;font-size:2.8rem;margin-bottom:16px;">
+<h1>
 Komunitas Kolaboratif
 </h1>
 
-<p style="opacity:.8;margin-bottom:28px;">
+<p>
 Terhubung dengan sesama profesional dan kembangkan jaringan bersama
 </p>
 
-<a href="daftar.html" style="background:#FFC107;color:#000;padding:14px 28px;border-radius:10px;font-weight:700;text-decoration:none;display:inline-block;transition:.3s;">
+<a href="daftar.html" class="cta-btn">
 Bergabung Sekarang
 </a>
 
 </section>
 
 <!-- COMMUNITY FEATURES -->
-<section style="max-width:1200px;margin:auto;padding:40px 20px 100px;">
+<section class="content">
 
-<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;">
+<div class="community-grid">
 
-<div style="background:#111;border-radius:18px;padding:24px;border:1px solid rgba(255,255,255,.05);transition:.3s;">
-<h3 style="margin-bottom:12px;">Forum Diskusi</h3>
+<div class="community-card">
+<h3>Forum Diskusi</h3>
 <p>Bagikan pengalaman dan dapatkan solusi dari komunitas</p>
-<div style="margin-top:16px;color:#FFC107;">2.5k+ Anggota Aktif</div>
+<div class="community-stat">2.5k+ Anggota Aktif</div>
 </div>
 
-<div style="background:#111;border-radius:18px;padding:24px;border:1px solid rgba(255,255,255,.05);">
-<h3 style="margin-bottom:12px;">Networking Events</h3>
+<div class="community-card">
+<h3>Networking Events</h3>
 <p>Acara rutin untuk memperluas jaringan profesional</p>
-<div style="margin-top:16px;color:#FFC107;">12 Event/Bulan</div>
+<div class="community-stat">12 Event/Bulan</div>
 </div>
 
-<div style="background:#111;border-radius:18px;padding:24px;border:1px solid rgba(255,255,255,.05);">
-<h3 style="margin-bottom:12px;">Mentorship Program</h3>
+<div class="community-card">
+<h3>Mentorship Program</h3>
 <p>Program bimbingan dari para ahli berpengalaman</p>
-<div style="margin-top:16px;color:#FFC107;">50+ Mentor</div>
+<div class="community-stat">50+ Mentor</div>
 </div>
 
-<div style="background:#111;border-radius:18px;padding:24px;border:1px solid rgba(255,255,255,.05);">
-<h3 style="margin-bottom:12px;">Resource Sharing</h3>
+<div class="community-card">
+<h3>Resource Sharing</h3>
 <p>Akses ke materi dan tools eksklusif member</p>
-<div style="margin-top:16px;color:#FFC107;">1000+ Resources</div>
+<div class="community-stat">1000+ Resources</div>
 </div>
 
 </div>
 </section>
 
 <!-- MOBILE NAV -->
-<nav style="display:none;position:fixed;bottom:0;left:0;right:0;height:60px;background:#FFC107;align-items:center;justify-content:space-around;box-shadow:0 -4px 20px rgba(0,0,0,.3);z-index:1000;"
-class="mobile-nav">
+<nav class="mobile-nav">
 
-<a href="index.html" style="flex:1;display:flex;justify-content:center;align-items:center;color:rgba(0,0,0,.5);font-size:1.2rem;text-decoration:none;">
+<a href="index.html">
 <i class="fas fa-home"></i>
 </a>
 
-<a href="jasa.html" style="flex:1;display:flex;justify-content:center;align-items:center;color:rgba(0,0,0,.5);font-size:1.2rem;text-decoration:none;">
+<a href="jasa.html">
 <i class="fas fa-briefcase"></i>
 </a>
 
-<a href="edukasi.html" style="flex:1;display:flex;justify-content:center;align-items:center;color:rgba(0,0,0,.5);font-size:1.2rem;text-decoration:none;">
+<a href="edukasi.html">
 <i class="fas fa-graduation-cap"></i>
 </a>
 
-<a href="komunitas.html" style="flex:1;display:flex;justify-content:center;align-items:center;color:#000;font-size:1.2rem;text-decoration:none;">
+<a href="komunitas.html" class="active">
 <i class="fas fa-users"></i>
 </a>
 
-<a href="tentang.html" style="flex:1;display:flex;justify-content:center;align-items:center;color:rgba(0,0,0,.5);font-size:1.2rem;text-decoration:none;">
+<a href="tentang.html">
 <i class="fas fa-info-circle"></i>
 </a>
 
-<a href="daftar.html" style="flex:1;display:flex;justify-content:center;align-items:center;color:rgba(0,0,0,.5);font-size:1.2rem;text-decoration:none;">
+<a href="daftar.html">
 <i class="fas fa-user"></i>
 </a>
 
@@ -288,78 +283,68 @@ document.querySelector('.mobile-bottom-nav').style.display='flex';
 
 </body>
 </html>
-Grup Komunitas
-</div>
+<!-- STATS -->
+<section class="stats-section">
+<h2>Grup Komunitas</h2>
 
-<div style="background:#111;padding:28px;border-radius:16px;text-align:center;border:1px solid rgba(255,255,255,.05);">
-<div style="font-size:2rem;font-weight:700;color:#FFC107;margin-bottom:6px;">320+</div>
+<div class="stats-grid">
+
+<div class="stat-card">
+<div class="stat-number">320+</div>
 Diskusi Aktif
 </div>
 
-<div style="background:#111;padding:28px;border-radius:16px;text-align:center;border:1px solid rgba(255,255,255,.05);">
-<div style="font-size:2rem;font-weight:700;color:#FFC107;margin-bottom:6px;">18</div>
+<div class="stat-card">
+<div class="stat-number">18</div>
 Event Bulanan
+</div>
+
 </div>
 </section>
 
 <!-- GROUPS -->
-<section style="padding:60px 20px;max-width:1100px;margin:auto;">
-<h2 style="font-family:Syne;margin-bottom:30px;text-align:center;">Grup Populer</h2>
+<section class="groups-section">
+<h2>Grup Populer</h2>
 
-<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;">
+<div class="groups-grid">
 
-<div style="background:#111;padding:24px;border-radius:16px;border:1px solid rgba(255,255,255,.05);transition:.3s;">
-<div style="font-weight:700;margin-bottom:8px;">Entrepreneur Indonesia</div>
-<div style="opacity:.7;font-size:.9rem;margin-bottom:14px;">Diskusi strategi bisnis dan networking.</div>
-<button onclick="openGuide()" style="background:#FFC107;border:none;padding:8px 16px;border-radius:8px;font-weight:600;cursor:pointer;">Gabung</button>
+<div class="group-card">
+<div class="group-title">Entrepreneur Indonesia</div>
+<div class="group-description">Diskusi strategi bisnis dan networking.</div>
+<button onclick="openGuide()" class="group-join-btn">Gabung</button>
 </div>
 
-<div style="background:#111;padding:24px;border-radius:16px;border:1px solid rgba(255,255,255,.05);">
-<div style="font-weight:700;margin-bottom:8px;">Digital Marketing Hub</div>
-<div style="opacity:.7;font-size:.9rem;margin-bottom:14px;">Belajar strategi marketing terbaru.</div>
-<button onclick="openGuide()" style="background:#FFC107;border:none;padding:8px 16px;border-radius:8px;font-weight:600;cursor:pointer;">Gabung</button>
+<div class="group-card">
+<div class="group-title">Digital Marketing Hub</div>
+<div class="group-description">Belajar strategi marketing terbaru.</div>
+<button onclick="openGuide()" class="group-join-btn">Gabung</button>
 </div>
 
-<div style="background:#111;padding:24px;border-radius:16px;border:1px solid rgba(255,255,255,.05);">
-<div style="font-weight:700;margin-bottom:8px;">Startup & Tech</div>
-<div style="opacity:.7;font-size:.9rem;margin-bottom:14px;">Komunitas founder dan developer.</div>
-<button onclick="openGuide()" style="background:#FFC107;border:none;padding:8px 16px;border-radius:8px;font-weight:600;cursor:pointer;">Gabung</button>
+<div class="group-card">
+<div class="group-title">Startup & Tech</div>
+<div class="group-description">Komunitas founder dan developer.</div>
+<button onclick="openGuide()" class="group-join-btn">Gabung</button>
 </div>
 
 </div>
 </section>
 
 <!-- CTA -->
-<section style="text-align:center;padding:80px 20px;">
-<h2 style="font-family:Syne;margin-bottom:20px;">Siap Jadi Bagian dari Komunitas?</h2>
-<a href="daftar.html" style="background:#FFC107;color:#000;padding:14px 30px;border-radius:10px;font-weight:700;text-decoration:none;">
-Daftar Sekarang
-</a>
+<section class="cta-section">
+<h2>Siap Jadi Bagian dari Komunitas?</h2>
+<a href="daftar.html" class="cta-btn-large">Daftar Sekarang</a>
 </section>
 
 <!-- MODAL -->
-<div id="guideModal" style="position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;justify-content:center;align-items:center;z-index:2000;">
-<div style="background:#111;padding:30px;border-radius:16px;max-width:500px;width:90%;">
-<h3 style="margin-bottom:16px;">Panduan Komunitas</h3>
+<div id="guideModal">
+<div class="modal-content">
+<h3>Panduan Komunitas</h3>
 <p>Pastikan kamu sudah memiliki akun dan mengikuti aturan komunitas sebelum bergabung.</p>
-<button onclick="closeGuide()" style="margin-top:20px;background:#FFC107;border:none;padding:8px 16px;border-radius:8px;">
-Mengerti
-</button>
+<button onclick="closeGuide()" class="modal-close-btn">Mengerti</button>
 </div>
 </div>
 
-<!-- MOBILE NAV -->
-<nav style="display:none;position:fixed;bottom:0;left:0;right:0;height:60px;background:#FFC107;align-items:center;justify-content:space-around;z-index:1000;"
-class="mobile-bottom-nav">
-
-<a href="index.html" style="flex:1;display:flex;justify-content:center;align-items:center;color:rgba(0,0,0,.5);font-size:1.2rem;text-decoration:none;"><i class="fas fa-home"></i></a>
-<a href="jasa.html" style="flex:1;display:flex;justify-content:center;align-items:center;color:rgba(0,0,0,.5);font-size:1.2rem;text-decoration:none;"><i class="fas fa-briefcase"></i></a>
-<a href="edukasi.html" style="flex:1;display:flex;justify-content:center;align-items:center;color:rgba(0,0,0,.5);font-size:1.2rem;text-decoration:none;"><i class="fas fa-graduation-cap"></i></a>
-<a href="komunikasi.html" style="flex:1;display:flex;justify-content:center;align-items:center;color:#000;font-size:1.2rem;text-decoration:none;"><i class="fas fa-users"></i></a>
-<a href="tentang.html" style="flex:1;display:flex;justify-content:center;align-items:center;color:rgba(0,0,0,.5);font-size:1.2rem;text-decoration:none;"><i class="fas fa-info-circle"></i></a>
-<a href="login.html" style="flex:1;display:flex;justify-content:center;align-items:center;color:rgba(0,0,0,.5);font-size:1.2rem;text-decoration:none;"><i class="fas fa-user"></i></a>
-
-</nav>
+</div>
 
 </body>
 </html>
