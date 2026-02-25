@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrasi Seller - AsaHub</title>
-    <link rel="icon" type="image/png" href="img/logo.png">
+    <link rel="icon" type="image/png" href="../img/logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/base.css">
-    <link rel="stylesheet" href="css/layout.css">
-    <link rel="stylesheet" href="css/components.css">
-    <link rel="stylesheet" href="css/responsive-mobile.css">
-    <link rel="stylesheet" href="css/responsive-desktop.css">
-    <link rel="stylesheet" href="css/mobile-navigation.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/responsive-mobile.css">
+    <link rel="stylesheet" href="../css/responsive-desktop.css">
+    <link rel="stylesheet" href="../css/mobile-navigation.css">
     <style>
         
         /* Registration Page Styles */
@@ -330,6 +330,59 @@
             margin-bottom: 25px;
         }
 
+        /* Loading State */
+        .btn-register.loading {
+            opacity: 0.7;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        .btn-register.loading::after {
+            content: '';
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid #ffffff;
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 0.8s linear infinite;
+            margin-left: 8px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Input Validation States */
+        .form-input.valid {
+            border-color: #4CAF50;
+            background: rgba(76, 175, 80, 0.1);
+        }
+
+        .form-input.invalid {
+            border-color: #ff4444;
+            background: rgba(255, 68, 68, 0.1);
+        }
+
+        /* File Upload Preview */
+        .file-preview {
+            margin-top: 10px;
+            display: none;
+        }
+
+        .file-preview img {
+            max-width: 100px;
+            max-height: 100px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .file-preview-info {
+            font-size: 12px;
+            color: rgba(255,255,255,0.8);
+            margin-top: 4px;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .registration-container {
@@ -602,6 +655,7 @@
                                     Pilih File KTP
                                 </label>
                             </div>
+                            <div class="file-preview" id="ktpPreview"></div>
                             <div class="field-error" id="ktpUploadError">Upload KTP wajib</div>
                         </div>
                         <div class="form-group">
@@ -613,6 +667,7 @@
                                     Pilih File Selfie
                                 </label>
                             </div>
+                            <div class="file-preview" id="selfieKtpPreview"></div>
                             <div class="field-error" id="selfieKtpUploadError">Upload selfie KTP wajib</div>
                         </div>
                     </div>
@@ -667,11 +722,132 @@
         </div>
     </div>
 
-    <script src="js/mobile-navigation.js"></script>
+    <script src="../js/mobile-navigation.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const form = document.getElementById('registrationForm');
             const errorMessage = document.getElementById('errorMessage');
+            const submitBtn = form.querySelector('.btn-register');
+            
+            // Real-time validation
+            const inputs = form.querySelectorAll('.form-input, .form-select, .form-textarea');
+            inputs.forEach(input => {
+                input.addEventListener('blur', () => validateField(input));
+                input.addEventListener('input', () => {
+                    if (input.classList.contains('invalid')) {
+                        validateField(input);
+                    }
+                });
+            });
+
+            // File upload previews
+            const fileInputs = form.querySelectorAll('input[type="file"]');
+            fileInputs.forEach(input => {
+                input.addEventListener('change', (e) => handleFileUpload(e, input));
+            });
+
+            // Phone number validation
+            const phoneInput = document.getElementById('phone');
+            if (phoneInput) {
+                phoneInput.addEventListener('input', formatPhoneNumber);
+            }
+
+            function handleFileUpload(event, input) {
+                const file = event.target.files[0];
+                const previewId = input.id.replace('Upload', 'Preview');
+                const preview = document.getElementById(previewId);
+                
+                if (file && file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        preview.innerHTML = `
+                            <img src="${e.target.result}" alt="Preview">
+                            <div class="file-preview-info">${file.name} (${(file.size / 1024).toFixed(1)} KB)</div>
+                        `;
+                        preview.style.display = 'block';
+                    };
+                    reader.readAsDataURL(file);
+                    
+                    // Validate file size (max 5MB)
+                    if (file.size > 5 * 1024 * 1024) {
+                        showFieldError(input.id + 'Error');
+                        showError('Ukuran file maksimal 5MB');
+                        input.value = '';
+                        preview.style.display = 'none';
+                    }
+                } else {
+                    preview.style.display = 'none';
+                }
+            }
+
+            function formatPhoneNumber() {
+                let phone = phoneInput.value.replace(/\D/g, '');
+                if (phone.startsWith('0')) {
+                    phone = '62' + phone.substring(1);
+                }
+                phoneInput.value = phone;
+            }
+
+            function validateField(field) {
+                const fieldId = field.id;
+                const errorElement = document.getElementById(fieldId + 'Error');
+                let isValid = true;
+
+                // Remove previous validation classes
+                field.classList.remove('valid', 'invalid');
+
+                if (field.hasAttribute('required') && !field.value.trim()) {
+                    showFieldError(fieldId + 'Error');
+                    field.classList.add('invalid');
+                    isValid = false;
+                } else {
+                    hideFieldError(fieldId + 'Error');
+                    
+                    // Special validations
+                    if (fieldId === 'email') {
+                        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                        if (!emailRegex.test(field.value)) {
+                            showFieldError('emailError');
+                            field.classList.add('invalid');
+                            isValid = false;
+                        } else {
+                            field.classList.add('valid');
+                        }
+                    } else if (fieldId === 'confirmPassword') {
+                        const password = document.getElementById('password').value;
+                        if (field.value !== password) {
+                            showFieldError('confirmPasswordError');
+                            showError('Password dan konfirmasi password tidak cocok');
+                            field.classList.add('invalid');
+                            isValid = false;
+                        } else {
+                            field.classList.add('valid');
+                        }
+                    } else if (fieldId === 'phone') {
+                        const phoneRegex = /^62[0-9]{9,13}$/;
+                        if (!phoneRegex.test(field.value.replace(/\D/g, ''))) {
+                            showFieldError('phoneError');
+                            field.classList.add('invalid');
+                            isValid = false;
+                        } else {
+                            field.classList.add('valid');
+                        }
+                    } else if (fieldId === 'paymentAccount') {
+                        const accountRegex = /^[0-9]{10,20}$/;
+                        if (!accountRegex.test(field.value.replace(/\D/g, ''))) {
+                            showFieldError('paymentAccountError');
+                            field.classList.add('invalid');
+                            isValid = false;
+                        } else {
+                            field.classList.add('valid');
+                        }
+                    } else {
+                        field.classList.add('valid');
+                    }
+                }
+
+                return isValid;
+            }
             
             form.addEventListener('submit', async function(e) {
                 e.preventDefault();
@@ -679,13 +855,63 @@
                 // Reset error messages
                 hideAllErrors();
                 
-                // Validate required fields
-                if (!validateForm()) {
+                // Validate all fields
+                let isFormValid = true;
+                inputs.forEach(input => {
+                    if (!validateField(input)) {
+                        isFormValid = false;
+                    }
+                });
+                
+                // Validate file uploads
+                const requiredFiles = ['ktpUpload', 'selfieKtpUpload'];
+                requiredFiles.forEach(fileId => {
+                    const fileInput = document.getElementById(fileId);
+                    if (!fileInput.files || fileInput.files.length === 0) {
+                        showFieldError(fileId + 'Error');
+                        isFormValid = false;
+                    }
+                });
+                
+                // Check password match if password field exists
+                const password = document.getElementById('password');
+                const confirmPassword = document.getElementById('confirmPassword');
+                if (password && confirmPassword) {
+                    if (password.value !== confirmPassword.value) {
+                        showFieldError('confirmPasswordError');
+                        showError('Password dan konfirmasi password tidak cocok');
+                        isFormValid = false;
+                    }
+                }
+                
+                // Check checkboxes
+                const checkboxes = ['dataStatement', 'legal1', 'legal2', 'legal3'];
+                checkboxes.forEach(checkboxId => {
+                    const checkbox = document.getElementById(checkboxId);
+                    if (checkbox && !checkbox.checked) {
+                        showError('Anda harus menyetujui semua persetujuan');
+                        isFormValid = false;
+                    }
+                });
+
+                if (!isFormValid) {
+                    // Scroll to first error
+                    const firstError = form.querySelector('.invalid, .field-error[style*="block"]');
+                    if (firstError) {
+                        firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
                     return;
                 }
                 
+                // Show loading state
+                submitBtn.classList.add('loading');
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="fas fa-store"></i> MEMPROSES...';
+                
                 try {
-                    // Simulate registration process
+                    // Simulate API call
+                    await new Promise(resolve => setTimeout(resolve, 2000));
+                    
                     console.log('Seller registration submitted');
                     
                     // Show success modal
@@ -693,58 +919,13 @@
                     
                 } catch (error) {
                     showError('Terjadi kesalahan. Silakan coba lagi.');
+                } finally {
+                    // Reset loading state
+                    submitBtn.classList.remove('loading');
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '<i class="fas fa-store"></i> DAFTAR SEKARANG';
                 }
             });
-            
-            function validateForm() {
-                let isValid = true;
-                
-                // Check required fields
-                const requiredFields = [
-                    'fullName', 'email', 'phone', 'password', 'confirmPassword',
-                    'storeName', 'businessCategory', 'businessDescription', 
-                    'operationalAddress', 'paymentAccount', 'ktpUpload', 'selfieKtpUpload'
-                ];
-                
-                requiredFields.forEach(fieldId => {
-                    const field = document.getElementById(fieldId);
-                    const errorElement = document.getElementById(fieldId + 'Error');
-                    
-                    if (field.type === 'file') {
-                        if (!field.files || field.files.length === 0) {
-                            showFieldError(fieldId + 'Error');
-                            isValid = false;
-                        }
-                    } else {
-                        if (!field.value.trim()) {
-                            showFieldError(fieldId + 'Error');
-                            isValid = false;
-                        }
-                    }
-                });
-                
-                // Check password match
-                const password = document.getElementById('password').value;
-                const confirmPassword = document.getElementById('confirmPassword').value;
-                
-                if (password !== confirmPassword) {
-                    showFieldError('confirmPasswordError');
-                    showError('Password dan konfirmasi password tidak cocok');
-                    isValid = false;
-                }
-                
-                // Check checkboxes
-                const checkboxes = ['dataStatement', 'legal1', 'legal2', 'legal3'];
-                checkboxes.forEach(checkboxId => {
-                    const checkbox = document.getElementById(checkboxId);
-                    if (!checkbox.checked) {
-                        showError('Anda harus menyetujui semua persetujuan');
-                        isValid = false;
-                    }
-                });
-                
-                return isValid;
-            }
             
             function showFieldError(fieldId) {
                 const errorElement = document.getElementById(fieldId);

@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrasi Penyedia Jasa - AsaHub</title>
-    <link rel="icon" type="image/png" href="img/logo.png">
+    <link rel="icon" type="image/png" href="../img/logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/base.css">
-    <link rel="stylesheet" href="css/layout.css">
-    <link rel="stylesheet" href="css/components.css">
-    <link rel="stylesheet" href="css/responsive-mobile.css">
-    <link rel="stylesheet" href="css/responsive-desktop.css">
-    <link rel="stylesheet" href="css/mobile-navigation.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/responsive-mobile.css">
+    <link rel="stylesheet" href="../css/responsive-desktop.css">
+    <link rel="stylesheet" href="../css/mobile-navigation.css">
     <style>
         /* Registration Page Styles */
         .registration-container {
@@ -329,10 +329,97 @@
             margin-bottom: 25px;
         }
 
+        /* Loading State */
+        .btn-register.loading {
+            opacity: 0.7;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        .btn-register.loading::after {
+            content: '';
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid #ffffff;
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 0.8s linear infinite;
+            margin-left: 8px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Input Validation States */
+        .form-input.valid {
+            border-color: #4CAF50;
+            background: rgba(76, 175, 80, 0.1);
+        }
+
+        .form-input.invalid {
+            border-color: #ff4444;
+            background: rgba(255, 68, 68, 0.1);
+        }
+
+        /* File Upload Preview */
+        .file-preview {
+            margin-top: 10px;
+            display: none;
+        }
+
+        .file-preview img {
+            max-width: 100px;
+            max-height: 100px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .file-preview-info {
+            font-size: 12px;
+            color: rgba(255,255,255,0.8);
+            margin-top: 4px;
+        }
+
+        /* Mobile Bottom Navigation */
+        .mobile-bottom-nav {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: #FFC107;
+            align-items: center;
+            justify-content: space-around;
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.3);
+            z-index: 1000;
+        }
+
+        .mobile-bottom-nav a {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: rgba(0,0,0,0.5);
+            font-size: 1.2rem;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .mobile-bottom-nav a:hover {
+            color: rgba(0,0,0,0.7);
+        }
+
+        .mobile-bottom-nav a.active {
+            color: #000;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .registration-container {
-                padding: 100px 20px 100px;
+                padding: 100px 20px 80px;
             }
             .form-row {
                 grid-template-columns: 1fr;
@@ -346,6 +433,10 @@
             .progress-line {
                 width: 40px;
                 margin: 0 10px;
+            }
+
+            .mobile-bottom-nav {
+                display: flex;
             }
         }
     </style>
@@ -759,7 +850,7 @@
         </div>
     </div>
 
-    <script src="js/mobile-navigation.js"></script>
+    <script src="../js/mobile-navigation.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const form = document.getElementById('registrationForm');
