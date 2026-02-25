@@ -42,6 +42,64 @@
 
 <body style="margin:0;padding-top:64px;font-family:'DM Sans',sans-serif;background:linear-gradient(135deg,#000,#1a1a1a);color:#fff;overflow-x:hidden;">
 
+<!-- HAMBURGER BUTTON - POJOK KANAN ATAS (HANYA MOBILE) -->
+<button class="mobile-hamburger" id="mobileHamburger" aria-label="Toggle menu">
+    <div class="hamburger-icon">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</button>
+
+<!-- MOBILE NAVIGATION OVERLAY -->
+<div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+
+<!-- MOBILE NAVIGATION MENU -->
+<div class="mobile-nav-menu" id="mobileNavMenu">
+    <div class="mobile-nav-header">
+        <div class="mobile-nav-logo">
+            <span>🛒</span> AsaHub
+        </div>
+        <button class="mobile-nav-close" id="mobileNavClose" aria-label="Close menu">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+    
+    <div class="mobile-nav-content">
+        <div class="mobile-nav-links">
+            <a href="index.html">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="jasa.html">
+                <i class="fas fa-briefcase"></i>
+                <span>Jasa</span>
+            </a>
+            <a href="edukasi.html">
+                <i class="fas fa-graduation-cap"></i>
+                <span>Edukasi</span>
+            </a>
+            <a href="komunitas.html">
+                <i class="fas fa-users"></i>
+                <span>Komunitas</span>
+            </a>
+            <a href="tentang.html">
+                <i class="fas fa-info-circle"></i>
+                <span>Tentang</span>
+            </a>
+        </div>
+        
+        <div class="mobile-nav-actions">
+            <a href="login.html" class="btn btn-outline">
+                <i class="fas fa-sign-in-alt"></i> Masuk
+            </a>
+            <a href="daftar.html" class="btn btn-solid">
+                <i class="fas fa-user-plus"></i> Daftar
+            </a>
+        </div>
+    </div>
+</div>
+
 <!-- NAVBAR -->
 <nav style="position:fixed;top:0;left:0;right:0;height:64px;background:#FFC107;display:flex;align-items:center;z-index:1000;box-shadow:0 2px 20px rgba(0,0,0,.3);">
 
@@ -137,28 +195,28 @@ Pilih jenis akun yang sesuai dengan kebutuhan Anda
 
 <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;">
 
-<a href="registrasi-user.html" style="background:#111;border-radius:18px;padding:40px 24px;border:1px solid rgba(255,255,255,.05);transition:.3s;text-decoration:none;color:#fff;display:block;text-align:center;">
+<a href="user-registrasi.html" style="background:#111;border-radius:18px;padding:40px 24px;border:1px solid rgba(255,255,255,.05);transition:.3s;text-decoration:none;color:#fff;display:block;text-align:center;">
 <div style="font-size:3rem;margin-bottom:16px;">👤</div>
 <h3 style="margin-bottom:12px;font-family:Syne;">User</h3>
 <p style="opacity:.8;">Pengguna umum marketplace</p>
 <div style="margin-top:20px;color:#FFC107;font-weight:600;">Daftar →</div>
 </a>
 
-<a href="registrasi-seller.html" style="background:#111;border-radius:18px;padding:40px 24px;border:1px solid rgba(255,255,255,.05);transition:.3s;text-decoration:none;color:#fff;display:block;text-align:center;">
+<a href="seller-registrasi.html" style="background:#111;border-radius:18px;padding:40px 24px;border:1px solid rgba(255,255,255,.05);transition:.3s;text-decoration:none;color:#fff;display:block;text-align:center;">
 <div style="font-size:3rem;margin-bottom:16px;">🏪</div>
 <h3 style="margin-bottom:12px;font-family:Syne;">Seller</h3>
 <p style="opacity:.8;">Penjual produk</p>
 <div style="margin-top:20px;color:#FFC107;font-weight:600;">Daftar →</div>
 </a>
 
-<a href="registrasi-jasa.html" style="background:#111;border-radius:18px;padding:40px 24px;border:1px solid rgba(255,255,255,.05);transition:.3s;text-decoration:none;color:#fff;display:block;text-align:center;">
+<a href="jasa-registrasi.html" style="background:#111;border-radius:18px;padding:40px 24px;border:1px solid rgba(255,255,255,.05);transition:.3s;text-decoration:none;color:#fff;display:block;text-align:center;">
 <div style="font-size:3rem;margin-bottom:16px;">🛠️</div>
 <h3 style="margin-bottom:12px;font-family:Syne;">Penyedia Jasa</h3>
 <p style="opacity:.8;">Profesional jasa</p>
 <div style="margin-top:20px;color:#FFC107;font-weight:600;">Daftar →</div>
 </a>
 
-<a href="registrasi-edukasi.html" style="background:#111;border-radius:18px;padding:40px 24px;border:1px solid rgba(255,255,255,.05);transition:.3s;text-decoration:none;color:#fff;display:block;text-align:center;">
+<a href="edukasi-registrasi.html" style="background:#111;border-radius:18px;padding:40px 24px;border:1px solid rgba(255,255,255,.05);transition:.3s;text-decoration:none;color:#fff;display:block;text-align:center;">
 <div style="font-size:3rem;margin-bottom:16px;">🎓</div>
 <h3 style="margin-bottom:12px;font-family:Syne;">Mentor Edukasi</h3>
 <p style="opacity:.8;">Pengajar & mentor</p>

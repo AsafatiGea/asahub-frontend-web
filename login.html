@@ -217,7 +217,7 @@ style="width:100%;padding:14px;background:#FFC107;color:#000;border:none;border-
 <div style="color:#666;font-size:14px;margin-bottom:16px;">
 Belum punya akun?
 </div>
-<a href="daftar.html" style="display:inline-block;padding:12px 24px;background:#333;color:#fff;border-radius:10px;text-decoration:none;font-weight:600;">
+<a href="daftar.html" id="registerLink" style="display:inline-block;padding:12px 24px;background:#333;color:#fff;border-radius:10px;text-decoration:none;font-weight:600;">
 Daftar Sekarang
 </a>
 </div>
@@ -365,6 +365,32 @@ document.getElementById('loginForm')?.addEventListener('submit', function(e) {
         window.location.href = redirects[accountType];
     }
 });
+
+// Dynamic registration link based on account type
+const accountTypeSelect = document.getElementById('accountType');
+const registerLink = document.getElementById('registerLink');
+
+function updateRegisterLink() {
+    const accountType = accountTypeSelect.value;
+    const registrationPages = {
+        'user': 'user-registrasi.html',
+        'seller': 'seller-registrasi.html', 
+        'provider': 'jasa-registrasi.html',
+        'mentor': 'edukasi-registrasi.html'
+    };
+    
+    if (registrationPages[accountType]) {
+        registerLink.href = registrationPages[accountType];
+    } else {
+        registerLink.href = 'daftar.html'; // Default page
+    }
+}
+
+// Update link when account type changes
+accountTypeSelect?.addEventListener('change', updateRegisterLink);
+
+// Initialize link on page load
+updateRegisterLink();
 </script>
 
 </body>
