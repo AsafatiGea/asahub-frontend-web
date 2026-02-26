@@ -589,7 +589,7 @@
     left: 0;
     right: 0;
     height: 30px;
-    background: transparent;
+    background: yellow;
     align-items: center;
     justify-content: space-around;
     box-shadow: 0 -4px 20px rgba(0,0,0,0.3);
@@ -608,7 +608,7 @@
 }
 
 .mobile-nav a.active {
-    color: yellow;
+    color: black;
 }
 
 /* Show mobile nav on small screens */
