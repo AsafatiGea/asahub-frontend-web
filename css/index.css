@@ -165,37 +165,6 @@ h1, h2, h3 {
     background: rgba(0,0,0,0.1);
 }
 
-/* ================= MOBILE NAV ================= */
-
-.mobile-nav {
-    display: none;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 65px;
-    background: #FFC107;
-    align-items: center;
-    justify-content: space-around;
-    box-shadow: 0 -4px 20px rgba(0,0,0,0.3);
-    z-index: 1000;
-}
-
-.mobile-nav a {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    color: rgba(0,0,0,0.6);
-    font-size: 1.3rem;
-}
-
-.mobile-nav a.active {
-    color: #000;
-}
-
 /* ================= RESPONSIVE Ke Device ================= */
 
 @media (max-width: 768px) {
