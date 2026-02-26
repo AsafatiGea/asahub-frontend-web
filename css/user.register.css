@@ -176,14 +176,4 @@
   color: #ffc107;
 }
 
-/* ================= RESPONSIVE ================= */
-
-@media (max-width: 768px) {
-  .form-row {
-    grid-template-columns: 1fr;
-  }
-
-  .btn-container {
-    flex-direction: column;
-  }
-}
+/* Responsive styles moved to css/responsive-mobile.css */

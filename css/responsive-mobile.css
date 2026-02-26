@@ -631,3 +631,437 @@
     display: flex;
   }
 }
+
+/* ========================================
+   RESPONSIVE MOBILE STYLES
+   Consolidated from all CSS files
+   ======================================== */
+
+/* --- USER REGISTER RESPONSIVE --- */
+@media (max-width: 768px) {
+  .registration-container .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .registration-container .btn-container {
+    flex-direction: column;
+  }
+}
+
+/* --- SELLER REGISTER RESPONSIVE --- */
+@media (max-width: 768px) {
+  .seller-register .registration-container {
+    padding: 100px 20px 80px;
+  }
+
+  .seller-register .registration-card {
+    padding: 30px 20px;
+  }
+
+  .seller-register .form-row {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .seller-register .btn-container {
+    flex-direction: column;
+  }
+
+  .seller-register .progress-line {
+    width: 40px;
+    margin: 0 10px;
+  }
+}
+
+/* --- JASA REGISTER RESPONSIVE --- */
+@media (max-width: 768px) {
+  .jasa-register .registration-container {
+    padding: 100px 20px 80px;
+  }
+
+  .jasa-register .form-row {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .jasa-register .btn-container {
+    flex-direction: column;
+  }
+
+  .jasa-register .progress-line {
+    width: 40px;
+    margin: 0 10px;
+  }
+
+  .jasa-register .mobile-bottom-nav {
+    display: flex;
+  }
+}
+
+/* --- LOGIN PAGE RESPONSIVE --- */
+@media (max-width: 768px) {
+  .login-page .navbar-links,
+  .login-page .navbar-actions {
+    display: none;
+  }
+
+  .login-page .mobile-nav {
+    display: flex;
+  }
+}
+
+/* --- DAFTAR PAGE RESPONSIVE --- */
+@media (max-width: 768px) {
+  .daftar-page .navbar-links,
+  .daftar-page .navbar-actions {
+    display: none;
+  }
+
+  .daftar-page .mobile-nav {
+    display: flex;
+  }
+}
+
+/* --- EDUKASI PAGE RESPONSIVE --- */
+@media (max-width: 768px) {
+  .edukasi-page body {
+    padding-top: 0;
+  }
+
+  .edukasi-page .section {
+    padding: 30px 20px 90px;
+  }
+
+  .edukti-page .mobile-nav {
+    display: flex;
+  }
+}
+
+@media (max-width: 480px) {
+  .edukasi-page .grid-auto-fit {
+    grid-template-columns: 1fr;
+  }
+
+  .edukasi-page .card {
+    padding: 20px;
+  }
+}
+
+/* --- JASA PAGE RESPONSIVE --- */
+@media (max-width: 1024px) {
+  .jasa-page .services-layout {
+    grid-template-columns: 1fr;
+    gap: var(--spacing);
+    padding: var(--spacing);
+  }
+
+  .jasa-page .services-sidebar {
+    position: static;
+    order: -1;
+  }
+
+  .jasa-page .services-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--spacing);
+  }
+}
+
+@media (max-width: 768px) {
+  .jasa-page .jasa-hero {
+    padding: var(--spacing-xl) 0;
+  }
+
+  .jasa-page .jasa-title {
+    font-size: var(--font-2xl);
+  }
+
+  .jasa-page .jasa-subtitle {
+    font-size: var(--font);
+  }
+
+  .jasa-page .jasa-categories {
+    padding: var(--spacing-xl) 0;
+  }
+
+  .jasa-page .jasa-categories-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing);
+  }
+
+  .jasa-page .services-header {
+    flex-direction: column;
+    gap: var(--spacing);
+    text-align: center;
+  }
+
+  .jasa-page .services-controls {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .jasa-page .services-search {
+    min-width: none;
+    flex: 1;
+  }
+
+  .jasa-page .services-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing);
+  }
+
+  .jasa-page .mobile-nav {
+    display: flex;
+  }
+
+  /* Hide desktop navigation on mobile */
+  .jasa-page nav > div > div:nth-child(2),
+  .jasa-page nav > div > div:nth-child(3) {
+    display: none !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .jasa-page .jasa-hero {
+    padding: var(--spacing-lg) 0;
+  }
+
+  .jasa-page .jasa-hero-content {
+    padding: 0 var(--spacing-sm);
+  }
+
+  .jasa-page .jasa-title {
+    font-size: var(--font-xl);
+  }
+
+  .jasa-page .jasa-subtitle {
+    font-size: var(--font-sm);
+  }
+
+  .jasa-page .jasa-categories,
+  .jasa-page .services-layout {
+    padding: var(--spacing) var(--spacing-sm);
+  }
+
+  .jasa-page .jasa-categories-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-sm);
+  }
+
+  .jasa-page .jasa-category-card {
+    padding: var(--spacing);
+  }
+
+  .jasa-page .services-sidebar {
+    padding: var(--spacing);
+  }
+
+  .jasa-page .services-header {
+    padding-bottom: var(--spacing);
+  }
+
+  .jasa-page .services-title {
+    font-size: var(--font-xl);
+  }
+
+  .jasa-page .service-card {
+    border-radius: var(--radius);
+  }
+
+  .jasa-page .service-header {
+    padding: var(--spacing);
+  }
+
+  .jasa-page .service-icon {
+    width: 48px;
+    height: 48px;
+    font-size: var(--font-xl);
+  }
+
+  .jasa-page .service-title {
+    font-size: var(--font-lg);
+  }
+
+  .jasa-page .service-body {
+    padding: var(--spacing);
+  }
+
+  .jasa-page .service-footer {
+    padding: var(--spacing);
+    flex-direction: column;
+    gap: var(--spacing);
+    text-align: center;
+  }
+
+  .jasa-page .service-actions {
+    flex-direction: column;
+    margin-top: var(--spacing);
+  }
+
+  .jasa-page .service-button {
+    width: 100%;
+  }
+}
+
+/* --- KOMUNITAS PAGE RESPONSIVE --- */
+@media (max-width: 768px) {
+  .komunitas-page .navbar-links,
+  .komunitas-page .navbar-actions {
+    display: none;
+  }
+
+  .komunitas-page .mobile-nav {
+    display: flex;
+  }
+
+  /* Hide desktop navigation on mobile */
+  .komunitas-page nav > div > div:nth-child(2),
+  .komunitas-page nav > div > div:nth-child(3) {
+    display: none !important;
+  }
+}
+
+/* --- TENTANG PAGE RESPONSIVE --- */
+@media (max-width: 1024px) {
+  .tentang-page .founder-content {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xl);
+    text-align: center;
+  }
+
+  .tentang-page .founder-avatar {
+    width: 250px;
+    height: 250px;
+  }
+
+  .tentang-page .values-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tentang-page .steps-container {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing);
+  }
+}
+
+@media (max-width: 768px) {
+  .tentang-page .tentang-hero {
+    padding: var(--spacing-xl) 0;
+  }
+
+  .tentang-page .tentang-title {
+    font-size: var(--font-2xl);
+  }
+
+  .tentang-page .tentang-subtitle {
+    font-size: var(--font);
+  }
+
+  .tentang-page .tentang-features,
+  .tentang-page .founder-section,
+  .tentang-page .how-it-works-section,
+  .tentang-page .tentang-cta {
+    padding: var(--spacing-xl) 0;
+  }
+
+  .tentang-page .tentang-features-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing);
+  }
+
+  .tentang-page .founder-info {
+    padding: var(--spacing);
+  }
+
+  .tentang-page .founder-name {
+    font-size: var(--font-2xl);
+  }
+
+  .tentang-page .founder-tagline {
+    font-size: var(--font);
+  }
+
+  .tentang-page .step-item {
+    padding: var(--spacing);
+  }
+
+  .tentang-page .step-title {
+    font-size: var(--font-lg);
+  }
+
+  .tentang-page .tentang-cta-title {
+    font-size: var(--font-2xl);
+  }
+
+  .tentang-page .tentang-cta-description {
+    font-size: var(--font);
+  }
+
+  .tentang-page .mobile-nav {
+    display: flex;
+  }
+
+  /* Hide desktop navigation on mobile */
+  .tentang-page nav > div > div:nth-child(2),
+  .tentang-page nav > div > div:nth-child(3) {
+    display: none !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .tentang-page .tentang-hero {
+    padding: var(--spacing-lg) 0;
+  }
+
+  .tentang-page .tentang-hero-content {
+    padding: 0 var(--spacing-sm);
+  }
+
+  .tentang-page .tentang-title {
+    font-size: var(--font-xl);
+  }
+
+  .tentang-page .tentang-subtitle {
+    font-size: var(--font-sm);
+  }
+
+  .tentang-page .founder-avatar {
+    width: 200px;
+    height: 200px;
+  }
+
+  .tentang-page .founder-info {
+    padding: var(--spacing-sm);
+  }
+
+  .tentang-page .values-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-sm);
+  }
+
+  .tentang-page .value-item {
+    padding: var(--spacing-sm);
+  }
+
+  .tentang-page .steps-container {
+    grid-template-columns: 1fr;
+    gap: var(--spacing);
+  }
+
+  .tentang-page .step-item {
+    padding: var(--spacing-sm);
+  }
+
+  .tentang-page .tentang-cta-content {
+    padding: 0 var(--spacing-sm);
+  }
+
+  .tentang-page .tentang-cta-button {
+    padding: var(--spacing) var(--spacing-lg);
+    font-size: var(--font);
+  }
+
+  .tentang-page .cv-link {
+    padding: var(--spacing-sm) var(--spacing);
+    font-size: var(--font-sm);
+  }
+}

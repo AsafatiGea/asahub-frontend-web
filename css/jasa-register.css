@@ -198,27 +198,4 @@
   max-width: 400px;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .registration-container {
-    padding: 100px 20px 80px;
-  }
-
-  .form-row {
-    grid-template-columns: 1fr;
-    gap: 15px;
-  }
-
-  .btn-container {
-    flex-direction: column;
-  }
-
-  .progress-line {
-    width: 40px;
-    margin: 0 10px;
-  }
-
-  .mobile-bottom-nav {
-    display: flex;
-  }
-}
+/* Responsive styles moved to css/responsive-mobile.css */

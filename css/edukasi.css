@@ -209,7 +209,7 @@ body {
   background: #333;
 }
 
-/* ---------- MAIN NAVBAR STYLES untuk device kecil ---------- */
+/* ---------- MAIN NAVBAR STYLES ---------- */
 .navbar {
   position: fixed;
   top: 0;
@@ -252,99 +252,4 @@ body {
   margin-bottom: 30px;
 }
 
-/* ================= RESPONSIVE Ke Device ================= */
-@media (max-width: 768px) {
-  body {
-    padding-top: 0;
-  }
-
-  .section {
-    padding: 30px 20px 90px;
-  }
-
-  .mobile-nav {
-    display: flex;
-  }
-}
-@media (max-width: 480px) {
-  .grid-auto-fit {
-    grid-template-columns: 1fr;
-  }
-
-  .card {
-    padding: 20px;
-  }
-}
-
-/* ---------- NAVBAR STYLES ---------- */
-.navbar-links {
-  display: flex;
-  gap: 4px;
-  flex: 1;
-}
-
-.navbar-links a {
-  color: #fff;
-  text-decoration: none;
-  padding: 8px 14px;
-  border-radius: 8px;
-  transition: background-color 0.3s ease;
-}
-
-.navbar-links a:hover {
-  background: rgba(0, 0, 0, 0.1);
-}
-
-.navbar-links a.active {
-  background: rgba(0, 0, 0, 0.15);
-}
-
-.navbar-actions {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
-
-.navbar-btn {
-  padding: 8px 20px;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: all 0.3s ease;
-}
-
-.navbar-btn-outline {
-  border: 2px solid #fff;
-  color: #fff;
-}
-
-.navbar-btn-outline:hover {
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.navbar-btn-solid {
-  background: #000;
-  color: #fff;
-}
-
-.navbar-btn-solid:hover {
-  background: #333;
-}
-/* Mobile Responsive */
-@media (max-width: 1024px) {
-  .services-layout {
-    grid-template-columns: 1fr;
-    gap: var(--spacing);
-    padding: var(--spacing);
-  }
-
-  .services-sidebar {
-    position: static;
-    order: -1;
-  }
-
-  .services-grid {
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: var(--spacing);
-  }
-}
+/* Responsive styles moved to css/responsive-mobile.css */

@@ -179,32 +179,4 @@
   margin-top: 12px;
 }
 
-/* ================= MOBILE ================= */
-
-.mobile-nav {
-  display: none;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 60px;
-  background: #ffc107;
-  justify-content: space-around;
-  align-items: center;
-}
-
-.mobile-nav a {
-  color: rgba(0, 0, 0, 0.6);
-  font-size: 1.2rem;
-}
-
-@media (max-width: 768px) {
-  .navbar-links,
-  .navbar-actions {
-    display: none;
-  }
-
-  .mobile-nav {
-    display: flex;
-  }
-}
+/* Responsive styles moved to css/responsive-mobile.css */

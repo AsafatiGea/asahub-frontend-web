@@ -181,15 +181,4 @@
   color: #000;
 }
 
-/* ================= RESPONSIVE ================= */
-
-@media (max-width: 768px) {
-  .navbar-links,
-  .navbar-actions {
-    display: none;
-  }
-
-  .mobile-nav {
-    display: flex;
-  }
-}
+/* Responsive styles moved to css/responsive-mobile.css */
