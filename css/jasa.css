@@ -763,7 +763,7 @@
   left: 0;
   right: 0;
   height: 60px;
-  background: #FFC107;
+  background: #1e1c15;
   align-items: center;
   justify-content: space-around;
   box-shadow: 0 -4px 20px rgba(0,0,0,.3);
@@ -775,7 +775,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  color: rgba(0,0,0,.5);
+  color: rgba(36, 8, 95, 0.5);
   font-size: 1.2rem;
   text-decoration: none;
 }

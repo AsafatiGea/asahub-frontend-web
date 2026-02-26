@@ -25,7 +25,7 @@
     right: 16px;
     width: 44px;
     height: 44px;
-    background: #FFC107;
+    background: transparent;
     border: none;
     border-radius: 8px;
     cursor: pointer;
@@ -38,7 +38,7 @@
 }
 
 .mobile-hamburger:hover {
-    background: #FFB300;
+    background: #36290b;
     transform: scale(1.05);
 }
 
@@ -278,7 +278,7 @@
 
 .mobile-nav-actions .btn-outline {
     background: transparent;
-    color: #FFC107;
+    color: #9a7c23;
     border: 2px solid #FFC107;
 }
 
@@ -588,8 +588,8 @@
     bottom: 0;
     left: 0;
     right: 0;
-    height: 65px;
-    background: #FFC107;
+    height: 30px;
+    background: transparent;
     align-items: center;
     justify-content: space-around;
     box-shadow: 0 -4px 20px rgba(0,0,0,0.3);
@@ -608,7 +608,7 @@
 }
 
 .mobile-nav a.active {
-    color: #000;
+    color: yellow;
 }
 
 /* Show mobile nav on small screens */
