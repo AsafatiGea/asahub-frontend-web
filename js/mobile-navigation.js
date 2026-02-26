@@ -1,7 +1,8 @@
 // Mobile Navigation JavaScript
 document.addEventListener('DOMContentLoaded', function() {
-    // Mobile Navigation Elements
+    // Mobile Navigation Elements (support both id names used in templates)
     const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    const mobileHamburger = document.getElementById('mobileHamburger');
     const mobileNavMenu = document.getElementById('mobileNavMenu');
     const mobileNavClose = document.getElementById('mobileNavClose');
     const mobileNavExit = document.getElementById('mobileNavExit');
@@ -20,6 +21,8 @@ document.addEventListener('DOMContentLoaded', function() {
         if (mobileNavOverlay) {
             mobileNavOverlay.classList.add('active');
         }
+        if (mobileMenuToggle) mobileMenuToggle.classList.add('active');
+        if (mobileHamburger) mobileHamburger.classList.add('active');
         document.body.style.overflow = 'hidden'; // Prevent background scroll
     }
 
@@ -31,7 +34,18 @@ document.addEventListener('DOMContentLoaded', function() {
         if (mobileNavOverlay) {
             mobileNavOverlay.classList.remove('active');
         }
+        if (mobileMenuToggle) mobileMenuToggle.classList.remove('active');
+        if (mobileHamburger) mobileHamburger.classList.remove('active');
         document.body.style.overflow = ''; // Restore background scroll
+    }
+
+    // Toggle Mobile Navigation
+    function toggleMobileNav() {
+        if (mobileNavMenu && mobileNavMenu.classList.contains('active')) {
+            closeMobileNav();
+        } else {
+            openMobileNav();
+        }
     }
 
     // Toggle Desktop Dropdown
@@ -68,7 +82,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Event Listeners - Mobile Navigation
     if (mobileMenuToggle) {
-        mobileMenuToggle.addEventListener('click', openMobileNav);
+        mobileMenuToggle.addEventListener('click', toggleMobileNav);
+    }
+    if (mobileHamburger) {
+        mobileHamburger.addEventListener('click', toggleMobileNav);
     }
 
     if (mobileNavClose) {

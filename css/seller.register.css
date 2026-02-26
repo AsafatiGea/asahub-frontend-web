@@ -4,6 +4,7 @@
 min-height:100vh;
 background:linear-gradient(135deg,#000 0%,#1a1a1a 100%);
 padding:120px 20px 40px;
+font-family:'DM Sans',sans-serif;
 }
 
 .registration-card{
@@ -47,7 +48,9 @@ opacity:.9;
 .progress-indicator{
 display:flex;
 justify-content:center;
+align-items:center;
 margin-bottom:40px;
+flex-wrap:wrap;
 }
 
 .progress-step{
@@ -86,10 +89,6 @@ width:60px;
 height:2px;
 background:rgba(255,255,255,.2);
 margin:0 15px;
-}
-
-.progress-step.completed + .progress-line{
-background:#fff;
 }
 
 /* ================= FORM ================= */
@@ -138,16 +137,21 @@ padding:12px 16px;
 border:2px solid rgba(255,255,255,.2);
 border-radius:10px;
 background:rgba(255,255,255,.1);
-color:#000;
+color:#fff;
 font-size:16px;
 transition:.3s;
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder{
+color:rgba(255,255,255,.6);
 }
 
 .form-input:focus,
 .form-select:focus,
 .form-textarea:focus{
 outline:none;
-border-color:#fff;
+border-color:#FFC107;
 background:rgba(255,255,255,.2);
 }
 
@@ -181,7 +185,7 @@ transition:.3s;
 }
 
 .file-upload-label:hover{
-border-color:#fff;
+border-color:#FFC107;
 background:rgba(255,255,255,.2);
 }
 
@@ -195,7 +199,7 @@ margin-bottom:15px;
 
 .checkbox-group input{
 margin-right:10px;
-margin-top:2px;
+margin-top:3px;
 transform:scale(1.2);
 }
 
@@ -240,13 +244,13 @@ color:#FFC107;
 
 .btn-register{
 background:#FFC107;
-color:#fff;
-border:2px solid #fff;
+color:#000;
+border:none;
 }
 
 .btn-register:hover{
 background:#fff;
-color:#FFC107;
+color:#000;
 }
 
 /* ================= ERROR ================= */
@@ -293,7 +297,7 @@ max-width:400px;
 
 .success-content h2,
 .success-content p{
-color:#fff;
+color:#000;
 }
 
 /* ================= RESPONSIVE ================= */
@@ -301,7 +305,7 @@ color:#fff;
 @media(max-width:768px){
 
 .registration-container{
-padding:100px 20px 100px;
+padding:100px 20px 80px;
 }
 
 .registration-card{

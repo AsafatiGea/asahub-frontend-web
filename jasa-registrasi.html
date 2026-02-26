@@ -40,6 +40,64 @@
     </div>
 </nav>
 
+<!-- HAMBURGER BUTTON - POJOK KANAN ATAS (HANYA MOBILE) -->
+<button class="mobile-hamburger" id="mobileHamburger" aria-label="Toggle menu">
+    <div class="hamburger-icon">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</button>
+
+<!-- MOBILE NAVIGATION OVERLAY -->
+<div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+
+<!-- MOBILE NAVIGATION MENU -->
+<div class="mobile-nav-menu" id="mobileNavMenu">
+    <div class="mobile-nav-header">
+        <div class="mobile-nav-logo">
+            <span>🛒</span> AsaHub
+        </div>
+        <button class="mobile-nav-close" id="mobileNavClose" aria-label="Close menu">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+    
+    <div class="mobile-nav-content">
+        <div class="mobile-nav-links">
+            <a href="index.html">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="jasa.html">
+                <i class="fas fa-briefcase"></i>
+                <span>Jasa</span>
+            </a>
+            <a href="edukasi.html">
+                <i class="fas fa-graduation-cap"></i>
+                <span>Edukasi</span>
+            </a>
+            <a href="komunitas.html">
+                <i class="fas fa-users"></i>
+                <span>Komunitas</span>
+            </a>
+            <a href="tentang.html">
+                <i class="fas fa-info-circle"></i>
+                <span>Tentang</span>
+            </a>
+        </div>
+        
+        <div class="mobile-nav-actions">
+            <a href="login.html" class="btn btn-outline">
+                <i class="fas fa-sign-in-alt"></i> Masuk
+            </a>
+            <a href="daftar.html" class="btn btn-solid">
+                <i class="fas fa-user-plus"></i> Daftar
+            </a>
+        </div>
+    </div>
+</div>
+
 <!-- Registration Container -->
 <div class="registration-container">
     <div class="registration-card">
@@ -190,7 +248,65 @@ document.addEventListener('DOMContentLoaded', function() {
 function goToHome() {
     window.location.href = "index.html";
 }
+
+// Mobile Navigation
+const mobileHamburger = document.getElementById('mobileHamburger');
+const mobileNavOverlay = document.getElementById('mobileNavOverlay');
+const mobileNavMenu = document.getElementById('mobileNavMenu');
+const mobileNavClose = document.getElementById('mobileNavClose');
+
+if (mobileHamburger && mobileNavOverlay && mobileNavMenu && mobileNavClose) {
+    mobileHamburger.addEventListener('click', () => {
+        mobileNavOverlay.style.display = 'block';
+        mobileNavMenu.style.right = '0';
+    });
+
+    mobileNavClose.addEventListener('click', () => {
+        mobileNavOverlay.style.display = 'none';
+        mobileNavMenu.style.right = '-280px';
+    });
+
+    mobileNavOverlay.addEventListener('click', () => {
+        mobileNavOverlay.style.display = 'none';
+        mobileNavMenu.style.right = '-280px';
+    });
+}
+
+// Show mobile nav on small screens
+if(window.innerWidth<=768){
+document.querySelector('.mobile-nav').style.display='flex';
+}
 </script>
+
+<!-- Mobile Bottom Navigation -->
+<!-- MOBILE NAV -->
+<nav class="mobile-nav">
+
+<a href="index.html">
+<i class="fas fa-home"></i>
+</a>
+
+<a href="jasa.html" class="active">
+<i class="fas fa-briefcase"></i>
+</a>
+
+<a href="edukasi.html">
+<i class="fas fa-graduation-cap"></i>
+</a>
+
+<a href="komunitas.html">
+<i class="fas fa-users"></i>
+</a>
+
+<a href="tentang.html">
+<i class="fas fa-info-circle"></i>
+</a>
+
+<a href="login.html">
+<i class="fas fa-user"></i>
+</a>
+
+</nav>
 
 </body>
 </html>

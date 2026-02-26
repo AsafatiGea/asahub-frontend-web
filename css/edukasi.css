@@ -154,21 +154,128 @@ body {
   color: #FFC107;
 }
 
-/* RESPONSIVE */
+/* ---------- NAVBAR STYLES ---------- */
+.navbar-links {
+  display: flex;
+  gap: 4px;
+  flex: 1;
+}
+
+.navbar-links a {
+  color: #fff;
+  text-decoration: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.navbar-links a:hover {
+  background: rgba(0,0,0,0.1);
+}
+
+.navbar-links a.active {
+  background: rgba(0,0,0,0.15);
+}
+
+.navbar-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.navbar-btn {
+  padding: 8px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.navbar-btn-outline {
+  border: 2px solid #fff;
+  color: #fff;
+}
+
+.navbar-btn-outline:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+.navbar-btn-solid {
+  background: #000;
+  color: #fff;
+}
+
+.navbar-btn-solid:hover {
+  background: #333;
+}
+
+/* ---------- MAIN NAVBAR STYLES untuk device kecil ---------- */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  background: #FFC107;
+  display: flex;
+  align-items: center;
+  z-index: 1000;
+  box-shadow: 0 2px 20px rgba(0,0,0,.3);
+}
+
+.navbar-container {
+  width: 100%;
+  max-width: 1280px;
+  margin: auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.navbar-logo {
+  font-family: Syne, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #fff;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.navbar-logo span {
+  color: #000;
+}
+
+/* ---------- HERO STYLES ---------- */
+.hero h1 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* ================= RESPONSIVE Ke Device ================= */
 @media (max-width: 768px) {
 
-  .nav-links,
-  .nav-actions {
-    display: none;
-  }
+    body {
+        padding-top: 0;
+    }
 
-  body {
-    padding-top: 70px;
-  }
+    .section {
+        padding: 30px 20px 90px;
+    }
 
-  .hero h1 {
-    font-size: 2rem;
-  }
+    .mobile-nav {
+        display: flex;
+    }
+}
+@media (max-width: 480px) {
+
+    .grid-auto-fit {
+        grid-template-columns: 1fr;
+    }
+
+    .card {
+        padding: 20px;
+    }
 }
 
 /* ---------- NAVBAR STYLES ---------- */
@@ -224,4 +331,22 @@ body {
 
 .navbar-btn-solid:hover {
   background: #333;
+}
+/* Mobile Responsive */
+@media (max-width: 1024px) {
+  .services-layout {
+    grid-template-columns: 1fr;
+    gap: var(--spacing);
+    padding: var(--spacing);
+  }
+  
+  .services-sidebar {
+    position: static;
+    order: -1;
+  }
+  
+  .services-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--spacing);
+  }
 }

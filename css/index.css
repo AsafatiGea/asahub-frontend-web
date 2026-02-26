@@ -196,7 +196,7 @@ h1, h2, h3 {
     color: #000;
 }
 
-/* ================= RESPONSIVE ================= */
+/* ================= RESPONSIVE Ke Device ================= */
 
 @media (max-width: 768px) {
 
@@ -279,7 +279,7 @@ h1, h2, h3 {
   background: #333;
 }
 
-/* ---------- MAIN NAVBAR STYLES ---------- */
+/* ---------- MAIN NAVBAR STYLES untuk device kecil ---------- */
 .navbar {
   position: fixed;
   top: 0;
