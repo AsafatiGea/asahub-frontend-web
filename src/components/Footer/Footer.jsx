@@ -2,11 +2,15 @@ export default function Footer() {
   return (
     <footer className="bg-white border-t mt-24">
       <div className="max-w-6xl mx-auto px-6 py-14">
+
         {/* Grid Footer */}
         <div className="grid md:grid-cols-3 gap-10">
+
           {/* Brand */}
           <div>
-            <h2 className="text-2xl font-bold text-blue-600 mb-4">AsaHub</h2>
+            <h2 className="text-2xl font-bold text-blue-600 mb-4">
+              AsaHub
+            </h2>
             <p className="text-gray-600">
               Pusat harapan ekosistem bisnis dan teknologi masa depan.
             </p>
@@ -31,12 +35,14 @@ export default function Footer() {
               brand untuk tumbuh bersama dalam era digital.
             </p>
           </div>
+
         </div>
 
         {/* Bottom Copyright */}
         <div className="border-t mt-10 pt-6 text-center text-gray-500 text-sm">
           © {new Date().getFullYear()} AsaHub – All rights reserved.
         </div>
+
       </div>
     </footer>
   );

@@ -8,11 +8,16 @@ export default function Navbar() {
         <div className="text-2xl font-bold text-blue-600">AsaHub</div>
 
         <div className="hidden md:flex gap-6 text-gray-600">
-
+          <Link to="/Home">Home</Link>
           <Link to="/marketplace">Marketplace</Link>
           <Link to="/edukasi">Edukasi</Link>
           <Link to="/karir">Karir</Link>
-          <Link to="/">Home</Link>
+
+
+
+          <Link to="/chat">Chat Box</Link>
+
+          <Link to="/profile">Profile</Link>
         </div>
 
         <Menu className="md:hidden" size={24} />
